@@ -1,0 +1,192 @@
+"use client";
+
+import React, { useRef, useState } from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, ChevronLeft, ChevronRight, Sparkles, ExternalLink } from "lucide-react";
+import { SERVICES, SITE_INFO } from "@/data/siteContent";
+import SectionHeading from "@/components/ui/SectionHeading";
+
+export default function ServicesShowcase() {
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const [activeFilter, setActiveFilter] = useState<string>("all");
+
+  const scroll = (direction: "left" | "right") => {
+    if (scrollContainerRef.current) {
+      const scrollAmount = direction === "left" ? -420 : 420;
+      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
+    }
+  };
+
+  const filteredServices =
+    activeFilter === "all"
+      ? SERVICES
+      : SERVICES.filter((s) =>
+          activeFilter === "academy"
+            ? s.slug.includes("academy") || s.slug.includes("cpd")
+            : !s.slug.includes("academy") && !s.slug.includes("cpd")
+        );
+
+  return (
+    <section className="py-24 sm:py-32 bg-cream-100 text-noir-950 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header with Title and Scroll Controls */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+          <SectionHeading
+            eyebrow="What We Offer"
+            title="Our Services"
+            description="Explore our bespoke collection of premium hair, beauty, wellness and advanced aesthetics."
+            align="left"
+            className="mb-0 max-w-2xl"
+          />
+
+          {/* Controls & Filter */}
+          <div className="flex items-center gap-4 self-start md:self-end">
+            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full border border-zinc-200/80 shadow-sm">
+              <button
+                onClick={() => setActiveFilter("all")}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
+                  activeFilter === "all"
+                    ? "bg-noir-950 text-white shadow"
+                    : "text-zinc-600 hover:text-noir-950"
+                }`}
+              >
+                All Services
+              </button>
+              <button
+                onClick={() => setActiveFilter("salon")}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
+                  activeFilter === "salon"
+                    ? "bg-noir-950 text-white shadow"
+                    : "text-zinc-600 hover:text-noir-950"
+                }`}
+              >
+                Salon &amp; Aesthetics
+              </button>
+              <button
+                onClick={() => setActiveFilter("academy")}
+                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
+                  activeFilter === "academy"
+                    ? "bg-noir-950 text-white shadow"
+                    : "text-zinc-600 hover:text-noir-950"
+                }`}
+              >
+                Academy
+              </button>
+            </div>
+
+            <div className="hidden sm:flex items-center gap-2">
+              <button
+                onClick={() => scroll("left")}
+                aria-label="Scroll services left"
+                className="w-10 h-10 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-noir-950 hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-colors shadow-sm"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+              <button
+                onClick={() => scroll("right")}
+                aria-label="Scroll services right"
+                className="w-10 h-10 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-noir-950 hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-colors shadow-sm"
+              >
+                <ChevronRight className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Horizontal Interactive Showcase */}
+        <div
+          ref={scrollContainerRef}
+          className="flex gap-6 overflow-x-auto pb-8 pt-2 snap-x snap-mandatory scroll-smooth no-scrollbar"
+        >
+          {filteredServices.map((service, index) => {
+            const isAcademyService =
+              service.slug.includes("academy") || service.slug.includes("cpd");
+
+            return (
+              <div
+                key={service.id}
+                className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[400px] snap-start bg-white rounded-2xl overflow-hidden border border-zinc-200/80 hover:border-gold-500/60 shadow-luxury hover:shadow-luxury_hover transition-all duration-500 flex flex-col group"
+              >
+                {/* Image Container with Zoom effect */}
+                <div className="relative h-60 w-full overflow-hidden bg-zinc-100">
+                  <Image
+                    src={service.image}
+                    alt={service.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-noir-950/70 via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity" />
+
+                  {/* Category Badge */}
+                  <div className="absolute top-4 left-4 bg-noir-950/80 backdrop-blur-md text-gold-400 border border-gold-500/30 px-3 py-1 rounded-full text-[11px] font-semibold tracking-wider uppercase">
+                    {service.category}
+                  </div>
+
+                  {/* Number Badge */}
+                  <div className="absolute bottom-3 right-4 font-serif text-3xl font-bold text-white/30 group-hover:text-gold-400/80 transition-colors">
+                    0{index + 1}
+                  </div>
+                </div>
+
+                {/* Card Body */}
+                <div className="p-6 sm:p-7 flex-1 flex flex-col justify-between space-y-4">
+                  <div>
+                    <h3 className="text-xl sm:text-2xl font-serif text-noir-950 group-hover:text-gold-600 transition-colors mb-3">
+                      {service.title}
+                    </h3>
+                    <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed line-clamp-4">
+                      {service.shortDesc}
+                    </p>
+                  </div>
+
+                  {/* Card Footer CTAs */}
+                  <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
+                    {isAcademyService ? (
+                      <a
+                        href={SITE_INFO.academyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600 hover:text-gold-700 transition-colors"
+                      >
+                        <span>Academy Portal</span>
+                        <ExternalLink className="w-3.5 h-3.5" />
+                      </a>
+                    ) : (
+                      <Link
+                        href={`/services/${service.slug}`}
+                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600 hover:text-gold-700 transition-colors"
+                      >
+                        <span>Learn More</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    )}
+
+                    <Link
+                      href={isAcademyService ? "/contact" : `/book?service=${encodeURIComponent(service.title)}`}
+                      className="px-4 py-2 rounded-full text-xs font-semibold bg-noir-950 text-white hover:bg-gold-500 hover:text-noir-950 transition-colors"
+                    >
+                      {isAcademyService ? "Enquire" : "Book Now"}
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Bottom Callout */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-noir-950 bg-white hover:bg-noir-950 hover:text-white border-2 border-noir-950 transition-all duration-300 shadow-sm"
+          >
+            <Sparkles className="w-4 h-4 text-gold-500" />
+            <span>View All Services &amp; Treatments</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
