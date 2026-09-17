@@ -57,7 +57,7 @@ export const SITE_INFO = {
   copyrightYear: 2026,
 };
 
-// 2 Authentic Salon Hero Slides (Academy removed from Hero as per client requirements)
+// 2 Authentic Salon Hero Slides
 export const HERO_SLIDES = [
   {
     id: "slide-1",
@@ -98,7 +98,7 @@ export const ABOUT_CONTENT = {
   image2: "/images/salon/treatment-suite.jpg",
 };
 
-// 4 Pure Salon Services (Academy services moved exclusively to dedicated Academy portal link)
+// 4 Pure Salon Services
 export const SERVICES: ServiceItem[] = [
   {
     id: "service-1",
@@ -283,30 +283,43 @@ export const GALLERY_ITEMS = [
   { id: "gal-6", image: "/images/gallery/gallery-6.webp", title: "Private Salon Area", category: "Salon" },
 ];
 
+// Exact FAQs from client reference screenshot & verified salon details
 export const FAQS = [
   {
-    question: "Do you accept walk-in appointments?",
-    answer: "Yes, walk-ins are accepted based on specialist availability. However, to guarantee your preferred time slot and stylist or aesthetician, we recommend booking in advance.",
+    question: "Do you have parking?",
+    answer: "Customers can utilise the parking spaces offered at both the Blenheim Center and Treaty Center.",
+  },
+  {
+    question: "Can I bring my kid/baby/stroller?",
+    answer: "Feel free to bring your children, but please ensure they are under supervision.",
+  },
+  {
+    question: "How far in advance do you guys book up?",
+    answer: "You have the option to schedule bookings as early as two months in advance.",
+  },
+  {
+    question: "How early should I arrive for my appointment?",
+    answer: "Please arrive about 5 minutes prior to your scheduled appointment time.",
+  },
+  {
+    question: "What forms of payment do you accept?",
+    answer: "We accept all major debit and credit cards, contactless payments, and cash in-salon.",
+  },
+  {
+    question: "Can we put tips on a credit card?",
+    answer: "Tips cannot be added to credit card transactions.",
+  },
+  {
+    question: "Do you charge a deposit for appointments?",
+    answer: "For appointments surpassing £75, a deposit will be applicable.",
   },
   {
     question: "Is Glam & Go a Hijab-Friendly salon?",
     answer: "Yes. We offer private, respectful salon spaces ensuring complete comfort and privacy for our clients during their treatments.",
   },
   {
-    question: "What aesthetic treatments do you offer?",
-    answer: "We offer advanced aesthetic treatments including SkinCeuticals clinical peels, Lynton laser treatments, and radiofrequency skin tightening, led by experienced practitioners with over 15 years of experience.",
-  },
-  {
-    question: "Do you offer free consultations?",
-    answer: "Yes, we offer free consultations to discuss your treatment goals and provide honest guidance tailored to you.",
-  },
-  {
-    question: "What payment methods do you accept?",
-    answer: "We accept all major debit and credit cards, contactless payments, and cash in-salon. For clinical aesthetic bookings, deposit details are confirmed during consultation or appointment confirmation.",
-  },
-  {
-    question: "Where are you located in Hounslow?",
-    answer: "We are located at Unit 21, Treaty Centre, High St, Hounslow TW3 1ES. The salon is centrally located and easy to reach by local public transport with nearby parking.",
+    question: "Do you accept walk-in appointments?",
+    answer: "Yes, walk-ins are accepted based on specialist availability. However, to guarantee your preferred time slot and stylist or aesthetician, we recommend booking in advance.",
   },
   {
     question: "Where can I find Glam & Go Training Academy courses?",
