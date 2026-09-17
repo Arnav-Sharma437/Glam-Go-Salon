@@ -51,7 +51,7 @@ export const SITE_INFO = {
   email: "glamandgohounslow@gmail.com",
   openingHours: "Mon - Sat: 9:30 AM - 6:30 PM | Sun: 11:00 AM - 5:00 PM",
   hiringNotice: "We’re Hiring: Salon Manager — Join Glam & Go Beauty Salon Today",
-  academyUrl: "https://glamandgotrainingacademy.com/",
+  academyUrl: "https://glamandgoacademy.com/",
   googleReviewsCount: "1,015 Google reviews",
   googleRating: "5.0",
   copyrightYear: 2026,
@@ -310,6 +310,6 @@ export const FAQS = [
   },
   {
     question: "Where can I find Glam & Go Training Academy courses?",
-    answer: "Our Training Academy now has its own dedicated website. Please visit https://glamandgotrainingacademy.com/ or click 'Academy' in our navigation to view course information and enrol.",
+    answer: "Our Training Academy now has its own dedicated website. Please visit https://glamandgoacademy.com/ or click 'Academy' in our navigation to view course information and enrol.",
   },
 ];
