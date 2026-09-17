@@ -1,22 +1,15 @@
 "use client";
 
-import React, { useRef, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronLeft, ChevronRight, Sparkles, ExternalLink } from "lucide-react";
+import { ArrowRight, Sparkles, ExternalLink, Pause, Play } from "lucide-react";
 import { SERVICES, SITE_INFO } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function ServicesShowcase() {
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [activeFilter, setActiveFilter] = useState<string>("all");
-
-  const scroll = (direction: "left" | "right") => {
-    if (scrollContainerRef.current) {
-      const scrollAmount = direction === "left" ? -420 : 420;
-      scrollContainerRef.current.scrollBy({ left: scrollAmount, behavior: "smooth" });
-    }
-  };
+  const [isPaused, setIsPaused] = useState<boolean>(false);
 
   const filteredServices =
     activeFilter === "all"
@@ -27,21 +20,24 @@ export default function ServicesShowcase() {
             : !s.slug.includes("academy") && !s.slug.includes("cpd")
         );
 
+  // Duplicate items to make the continuous infinite loop seamless
+  const loopServices = [...filteredServices, ...filteredServices];
+
   return (
     <section className="py-24 sm:py-32 bg-cream-100 text-noir-950 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with Title and Scroll Controls */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+        {/* Header with Title & Filter Controls */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
           <SectionHeading
             eyebrow="What We Offer"
             title="Our Services"
-            description="Explore our bespoke collection of premium hair, beauty, wellness and advanced aesthetics."
+            description="Explore our bespoke collection of premium hair, beauty, wellness, and advanced aesthetics."
             align="left"
             className="mb-0 max-w-2xl"
           />
 
           {/* Controls & Filter */}
-          <div className="flex items-center gap-4 self-start md:self-end">
+          <div className="flex items-center gap-3 self-start md:self-end">
             <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full border border-zinc-200/80 shadow-sm">
               <button
                 onClick={() => setActiveFilter("all")}
@@ -75,38 +71,38 @@ export default function ServicesShowcase() {
               </button>
             </div>
 
-            <div className="hidden sm:flex items-center gap-2">
-              <button
-                onClick={() => scroll("left")}
-                aria-label="Scroll services left"
-                className="w-10 h-10 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-noir-950 hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-colors shadow-sm"
-              >
-                <ChevronLeft className="w-5 h-5" />
-              </button>
-              <button
-                onClick={() => scroll("right")}
-                aria-label="Scroll services right"
-                className="w-10 h-10 rounded-full bg-white border border-zinc-200 flex items-center justify-center text-noir-950 hover:bg-gold-500 hover:text-white hover:border-gold-500 transition-colors shadow-sm"
-              >
-                <ChevronRight className="w-5 h-5" />
-              </button>
-            </div>
+            {/* Play/Pause Toggle Indicator */}
+            <button
+              onClick={() => setIsPaused(!isPaused)}
+              title={isPaused ? "Resume continuous scrolling" : "Pause continuous scrolling"}
+              className="px-3 py-2 rounded-full bg-white border border-zinc-200 text-xs font-medium text-zinc-700 hover:border-gold-500 hover:text-noir-950 flex items-center gap-1.5 shadow-sm"
+            >
+              {isPaused ? <Play className="w-3.5 h-3.5 text-gold-600" /> : <Pause className="w-3.5 h-3.5 text-gold-600" />}
+              <span className="hidden sm:inline">{isPaused ? "Resume" : "Pause"}</span>
+            </button>
           </div>
         </div>
+      </div>
 
-        {/* Horizontal Interactive Showcase */}
+      {/* Infinite Continuous Scrolling Track */}
+      <div
+        className="w-full overflow-hidden pause-hover select-none"
+        onMouseEnter={() => setIsPaused(true)}
+        onMouseLeave={() => setIsPaused(false)}
+      >
         <div
-          ref={scrollContainerRef}
-          className="flex gap-6 overflow-x-auto pb-8 pt-2 snap-x snap-mandatory scroll-smooth no-scrollbar"
+          className="flex gap-6 pb-6 pt-2 animate-marquee-continuous"
+          style={{ animationPlayState: isPaused ? "paused" : "running" }}
         >
-          {filteredServices.map((service, index) => {
+          {loopServices.map((service, index) => {
             const isAcademyService =
               service.slug.includes("academy") || service.slug.includes("cpd");
+            const originalIndex = index % filteredServices.length;
 
             return (
               <div
-                key={service.id}
-                className="flex-shrink-0 w-[300px] sm:w-[360px] md:w-[400px] snap-start bg-white rounded-2xl overflow-hidden border border-zinc-200/80 hover:border-gold-500/60 shadow-luxury hover:shadow-luxury_hover transition-all duration-500 flex flex-col group"
+                key={`${service.id}-${index}`}
+                className="w-[300px] sm:w-[360px] md:w-[410px] flex-shrink-0 bg-white rounded-2xl overflow-hidden border border-zinc-200/80 hover:border-gold-500/60 shadow-luxury hover:shadow-luxury_hover transition-all duration-300 flex flex-col group cursor-pointer"
               >
                 {/* Image Container with Zoom effect */}
                 <div className="relative h-60 w-full overflow-hidden bg-zinc-100">
@@ -125,7 +121,7 @@ export default function ServicesShowcase() {
 
                   {/* Number Badge */}
                   <div className="absolute bottom-3 right-4 font-serif text-3xl font-bold text-white/30 group-hover:text-gold-400/80 transition-colors">
-                    0{index + 1}
+                    0{originalIndex + 1}
                   </div>
                 </div>
 
@@ -174,18 +170,18 @@ export default function ServicesShowcase() {
             );
           })}
         </div>
+      </div>
 
-        {/* Bottom Callout */}
-        <div className="mt-12 text-center">
-          <Link
-            href="/services"
-            className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-noir-950 bg-white hover:bg-noir-950 hover:text-white border-2 border-noir-950 transition-all duration-300 shadow-sm"
-          >
-            <Sparkles className="w-4 h-4 text-gold-500" />
-            <span>View All Services &amp; Treatments</span>
-            <ArrowRight className="w-4 h-4" />
-          </Link>
-        </div>
+      {/* Bottom Callout */}
+      <div className="mt-10 text-center">
+        <Link
+          href="/services"
+          className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-noir-950 bg-white hover:bg-noir-950 hover:text-white border-2 border-noir-950 transition-all duration-300 shadow-sm"
+        >
+          <Sparkles className="w-4 h-4 text-gold-500" />
+          <span>View All Services &amp; Treatments</span>
+          <ArrowRight className="w-4 h-4" />
+        </Link>
       </div>
     </section>
   );

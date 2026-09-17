@@ -62,7 +62,7 @@ export default function Footer() {
             <Link href="/" className="inline-block">
               <div className="relative h-14 w-52">
                 <Image
-                  src="/images/Glam-Go-01-04-no-back-01-e1764747980245.png"
+                  src="/images/logo/logo.png"
                   alt="Glam & Go London"
                   fill
                   className="object-contain"

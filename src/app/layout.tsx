@@ -28,8 +28,8 @@ export const metadata: Metadata = {
   authors: [{ name: "Glam & Go London" }],
   creator: "Glam & Go London",
   icons: {
-    icon: "/images/cropped-logo-32x32.jpg",
-    apple: "/images/cropped-logo-180x180.jpg",
+    icon: "/images/logo/favicon-32x32.jpg",
+    apple: "/images/logo/apple-touch-icon.jpg",
   },
   openGraph: {
     title: "Glam and Go – Luxury Aesthetic & Beauty Salon",
@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: "Glam & Go London",
     images: [
       {
-        url: "/images/salon-1.jpg",
+        url: "/images/salon/salon-interior-main.jpg",
         width: 1200,
         height: 630,
         alt: "Glam & Go Luxury Salon",

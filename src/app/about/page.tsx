@@ -19,7 +19,7 @@ export default function AboutPage() {
       <section className="bg-noir-950 text-white py-20 lg:py-28 relative overflow-hidden border-b border-gold-500/20">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/salon-1.jpg"
+            src="/images/salon/salon-interior-main.jpg"
             alt="Glam & Go Salon background"
             fill
             className="object-cover"
@@ -73,7 +73,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6 space-y-6">
               <div className="relative h-[400px] sm:h-[460px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                 <Image
-                  src="/images/AD_08736-scaled-880x952.jpg"
+                  src="/images/salon/treatment-suite.jpg"
                   alt="Glam & Go Salon Atmosphere"
                   fill
                   className="object-cover"
@@ -83,7 +83,7 @@ export default function AboutPage() {
               <div className="grid grid-cols-2 gap-4">
                 <div className="relative h-48 rounded-xl overflow-hidden shadow-md border-2 border-white">
                   <Image
-                    src="/images/salon1-2.webp"
+                    src="/images/salon/salon-suite-2.webp"
                     alt="Salon Treatment Suite"
                     fill
                     className="object-cover"
@@ -91,7 +91,7 @@ export default function AboutPage() {
                 </div>
                 <div className="relative h-48 rounded-xl overflow-hidden shadow-md border-2 border-white">
                   <Image
-                    src="/images/salon1-3.webp"
+                    src="/images/salon/salon-suite-3.webp"
                     alt="Hair Care Studio"
                     fill
                     className="object-cover"

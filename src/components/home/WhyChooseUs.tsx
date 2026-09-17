@@ -56,7 +56,7 @@ export default function WhyChooseUs() {
           <div className="lg:col-span-5 relative">
             <div className="relative h-[480px] sm:h-[560px] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
-                src="/images/salon-4.jpg"
+                src="/images/salon/salon-atmosphere.jpg"
                 alt="Glam & Go Salon Care & Professional Atmosphere"
                 fill
                 className="object-cover object-center"

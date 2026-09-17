@@ -53,7 +53,7 @@ export default function Navbar() {
           <Link href="/" className="flex items-center gap-3 group">
             <div className="relative h-12 w-44 sm:h-14 sm:w-52 transition-transform duration-300 group-hover:scale-105">
               <Image
-                src="/images/Glam-Go-01-04-no-back-01-e1764747980245.png"
+                src="/images/logo/logo.png"
                 alt="Glam & Go London"
                 fill
                 priority

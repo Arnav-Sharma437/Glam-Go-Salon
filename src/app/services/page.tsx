@@ -18,7 +18,7 @@ export default function ServicesPage() {
       <section className="bg-noir-950 text-white py-20 lg:py-28 relative overflow-hidden border-b border-gold-500/20">
         <div className="absolute inset-0 opacity-20">
           <Image
-            src="/images/beauty-banner.png"
+            src="/images/banners/banner-beauty.png"
             alt="Services Banner"
             fill
             className="object-cover"

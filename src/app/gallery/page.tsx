@@ -9,12 +9,12 @@ import SectionHeading from "@/components/ui/SectionHeading";
 
 const allGalleryPhotos = [
   ...GALLERY_ITEMS,
-  { id: "gal-7", image: "/images/salon-1.jpg", title: "Flagship Salon Floor", category: "Salon Space" },
-  { id: "gal-8", image: "/images/salon-4.jpg", title: "Consultation & Aesthetics Area", category: "Clinic Interior" },
-  { id: "gal-9", image: "/images/hairstylists-working-with-customers-at-the-hair-sa-2023-11-27-05-05-59-utc2.webp", title: "Styling Artistry in Motion", category: "Hair Artistry" },
-  { id: "gal-10", image: "/images/AD_08736-scaled-880x952.jpg", title: "Private Treatment Suite", category: "Aesthetics" },
-  { id: "gal-11", image: "/images/glam-go-beauty-scaled.jpg", title: "Signature Glow Facials", category: "Beauty & Glow" },
-  { id: "gal-12", image: "/images/glam-go-wellness-scaled.jpg", title: "Wellness Care Suite", category: "Salon Space" },
+  { id: "gal-7", image: "/images/salon/salon-interior-main.jpg", title: "Flagship Salon Floor", category: "Salon Space" },
+  { id: "gal-8", image: "/images/salon/salon-atmosphere.jpg", title: "Consultation & Aesthetics Area", category: "Clinic Interior" },
+  { id: "gal-9", image: "/images/services/hair-styling.webp", title: "Styling Artistry in Motion", category: "Hair Artistry" },
+  { id: "gal-10", image: "/images/salon/treatment-suite.jpg", title: "Private Treatment Suite", category: "Aesthetics" },
+  { id: "gal-11", image: "/images/services/beauty-makeup.jpg", title: "Signature Glow Facials", category: "Beauty & Glow" },
+  { id: "gal-12", image: "/images/services/body-wellness.jpg", title: "Wellness Care Suite", category: "Salon Space" },
 ];
 
 export default function GalleryPage() {
