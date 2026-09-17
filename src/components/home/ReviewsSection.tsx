@@ -9,13 +9,13 @@ export default function ReviewsSection() {
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
   // Duplicate reviews to create a seamless infinite marquee scroll
-  const loopReviews = [...REVIEWS, ...REVIEWS];
+  const loopReviews = [...REVIEWS, ...REVIEWS, ...REVIEWS];
 
   return (
     <section className="py-24 sm:py-32 bg-cream-100 text-noir-950 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-12">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Google Trustindex Header Badge */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
             <SectionHeading
               eyebrow="What Our Clients Say"
@@ -59,54 +59,58 @@ export default function ReviewsSection() {
             </button>
           </div>
         </div>
-      </div>
 
-      {/* Infinite Continuous Scrolling Track */}
-      <div
-        className="w-full overflow-hidden pause-hover select-none"
-        onMouseEnter={() => setIsPaused(true)}
-        onMouseLeave={() => setIsPaused(false)}
-      >
+        {/* Container-Constrained Infinite Continuous Scrolling Track */}
         <div
-          className="flex gap-6 pb-6 pt-2 animate-marquee-continuous-fast"
-          style={{ animationPlayState: isPaused ? "paused" : "running" }}
+          className="relative w-full overflow-hidden pause-hover select-none rounded-2xl"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
         >
-          {loopReviews.map((review, idx) => (
-            <div
-              key={`${review.id}-${idx}`}
-              className="w-[320px] sm:w-[380px] md:w-[420px] flex-shrink-0 bg-white p-7 rounded-2xl border border-zinc-200/80 hover:border-gold-500/60 shadow-luxury hover:shadow-luxury_hover transition-all duration-300 flex flex-col justify-between space-y-5"
-            >
-              <div className="space-y-4">
-                {/* Rating & Google Verification Badge */}
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-1 text-amber-400">
-                    {[...Array(review.rating)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
+          {/* Subtle edge fade overlays for premium container look */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-cream-100 to-transparent z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-cream-100 to-transparent z-10" />
+
+          <div
+            className="flex gap-6 pb-6 pt-2 animate-marquee-continuous-fast"
+            style={{ animationPlayState: isPaused ? "paused" : "running" }}
+          >
+            {loopReviews.map((review, idx) => (
+              <div
+                key={`${review.id}-${idx}`}
+                className="w-[300px] sm:w-[360px] md:w-[390px] flex-shrink-0 bg-white p-7 rounded-2xl border border-zinc-200/80 hover:border-gold-500/60 shadow-luxury hover:shadow-luxury_hover transition-all duration-300 flex flex-col justify-between space-y-5"
+              >
+                <div className="space-y-4">
+                  {/* Rating & Google Verification Badge */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-1 text-amber-400">
+                      {[...Array(review.rating)].map((_, i) => (
+                        <Star key={i} className="w-4 h-4 fill-amber-400" />
+                      ))}
+                    </div>
+                    <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full font-medium border border-emerald-200">
+                      <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Google Verified
+                    </span>
                   </div>
-                  <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full font-medium border border-emerald-200">
-                    <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Google Verified
-                  </span>
+
+                  {/* Review Text */}
+                  <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed italic line-clamp-6">
+                    &ldquo;{review.text}&rdquo;
+                  </p>
                 </div>
 
-                {/* Review Text */}
-                <p className="text-xs sm:text-sm text-zinc-700 leading-relaxed italic line-clamp-6">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-              </div>
-
-              {/* Author & Verification Tag */}
-              <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
-                <div>
-                  <h4 className="text-sm font-semibold text-noir-950">{review.author}</h4>
-                  <p className="text-[11px] text-zinc-400">Trustindex verified review</p>
-                </div>
-                <div className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center font-bold text-xs text-zinc-600">
-                  {review.author.charAt(0)}
+                {/* Author & Verification Tag */}
+                <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
+                  <div>
+                    <h4 className="text-sm font-semibold text-noir-950">{review.author}</h4>
+                    <p className="text-[11px] text-zinc-400">Trustindex verified review</p>
+                  </div>
+                  <div className="w-7 h-7 rounded-full bg-zinc-100 flex items-center justify-center font-bold text-xs text-zinc-600">
+                    {review.author.charAt(0)}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
