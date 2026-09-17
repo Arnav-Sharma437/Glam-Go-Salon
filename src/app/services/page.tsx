@@ -2,13 +2,12 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import { ArrowRight, Sparkles, Check, ExternalLink } from "lucide-react";
-import { SERVICES, SITE_INFO } from "@/data/siteContent";
-import SectionHeading from "@/components/ui/SectionHeading";
+import { ArrowRight, Clock, Tag } from "lucide-react";
+import { SERVICES } from "@/data/siteContent";
 
 export const metadata: Metadata = {
   title: "Our Services | Hair, Beauty, Aesthetics & Wellness",
-  description: "Explore our comprehensive suite of hair styling, beauty, SkinCeuticals aesthetics, and certified training in Hounslow.",
+  description: "Explore our salon services in Hounslow: Hair, Beauty & Makeup, Aesthetics, and Body & Wellness Care.",
 };
 
 export default function ServicesPage() {
@@ -26,11 +25,11 @@ export default function ServicesPage() {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="text-xs uppercase tracking-[0.25em] font-semibold text-gold-400 mb-3 inline-block">
-            Bespoke Treatments &amp; Care
+            Salon &amp; Aesthetics
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif">Our Services</h1>
           <p className="mt-4 text-zinc-300 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            From precision hair couture and SkinCeuticals clinical peels to holistic body wellness and accredited training.
+            Providing premium hair, beauty, and aesthetic services all under one roof in Hounslow.
           </p>
         </div>
       </section>
@@ -39,7 +38,6 @@ export default function ServicesPage() {
       <section className="py-20 sm:py-28">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
           {SERVICES.map((service, index) => {
-            const isAcademy = service.slug.includes("academy") || service.slug.includes("cpd");
             const isReversed = index % 2 !== 0;
 
             return (
@@ -88,49 +86,54 @@ export default function ServicesPage() {
                     {service.shortDesc}
                   </p>
 
-                  {/* Highlights/Features */}
-                  {service.features && (
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 pt-2">
-                      {service.features.map((feature, fIdx) => (
-                        <div key={fIdx} className="flex items-center gap-2 text-xs sm:text-sm text-zinc-700 font-medium">
-                          <span className="w-4 h-4 rounded-full bg-gold-500/15 text-gold-600 flex items-center justify-center flex-shrink-0">
-                            <Check className="w-2.5 h-2.5" />
-                          </span>
-                          <span>{feature}</span>
-                        </div>
-                      ))}
+                  {/* Treatments table with duration and price */}
+                  {service.treatments && (
+                    <div className="space-y-2 pt-2">
+                      <h4 className="text-xs uppercase tracking-wider font-semibold text-zinc-700 mb-3">
+                        Treatments &amp; Pricing
+                      </h4>
+                      <div className="space-y-2">
+                        {service.treatments.map((t, tIdx) => (
+                          <div
+                            key={tIdx}
+                            className="p-3 bg-cream-50 rounded-xl border border-zinc-200/70 flex items-center justify-between text-xs sm:text-sm"
+                          >
+                            <span className="font-medium text-noir-950">{t.name}</span>
+                            <div className="flex items-center gap-4 text-zinc-600">
+                              {t.duration && (
+                                <span className="flex items-center gap-1 text-xs">
+                                  <Clock className="w-3.5 h-3.5 text-gold-600" />
+                                  {t.duration}
+                                </span>
+                              )}
+                              {t.price && (
+                                <span className="flex items-center gap-1 font-semibold text-gold-700 text-xs">
+                                  <Tag className="w-3.5 h-3.5" />
+                                  {t.price}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
                     </div>
                   )}
 
                   {/* CTAs */}
                   <div className="pt-4 flex flex-wrap items-center gap-4">
-                    {isAcademy ? (
-                      <a
-                        href={SITE_INFO.academyUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
-                      >
-                        <span>Visit Academy Dedicated Portal</span>
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
-                    ) : (
-                      <>
-                        <Link
-                          href={`/book?service=${encodeURIComponent(service.title)}`}
-                          className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
-                        >
-                          <span>Book Appointment</span>
-                          <ArrowRight className="w-3.5 h-3.5" />
-                        </Link>
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-semibold text-zinc-700 hover:text-gold-600 transition-colors"
-                        >
-                          <span>Full Details</span>
-                        </Link>
-                      </>
-                    )}
+                    <Link
+                      href={`/book?type=${service.bookingType}&service=${encodeURIComponent(service.title)}`}
+                      className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
+                    >
+                      <span>Book Appointment</span>
+                      <ArrowRight className="w-3.5 h-3.5" />
+                    </Link>
+                    <Link
+                      href={`/services/${service.slug}`}
+                      className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-semibold text-zinc-700 hover:text-gold-600 transition-colors"
+                    >
+                      <span>Full Details</span>
+                    </Link>
                   </div>
                 </div>
               </div>

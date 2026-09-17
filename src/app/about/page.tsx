@@ -2,14 +2,14 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import { Sparkles, Award, HeartHandshake, ShieldCheck, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight } from "lucide-react";
 import { ABOUT_CONTENT, STATS, SITE_INFO } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 
 export const metadata: Metadata = {
   title: "About Us | Luxury Aesthetic & Beauty Salon",
-  description: "Learn about the heritage, vision, and certified team behind Glam & Go London in Hounslow.",
+  description: "Learn about Glam & Go — where expertise meets the latest technology in Hounslow.",
 };
 
 export default function AboutPage() {
@@ -26,12 +26,9 @@ export default function AboutPage() {
           />
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-          <span className="text-xs uppercase tracking-[0.25em] font-semibold text-gold-400 mb-3 inline-block">
-            Our Heritage &amp; Vision
-          </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif">About Glam &amp; Go</h1>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif">About Us</h1>
           <p className="mt-4 text-zinc-300 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Over two decades of hairstyling artistry, medical-grade aesthetics, and clinical education in the heart of Hounslow.
+            Welcome to Glam and Go — where expertise meets the latest technology.
           </p>
         </div>
       </section>
@@ -53,12 +50,6 @@ export default function AboutPage() {
               <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
                 {ABOUT_CONTENT.paragraph1}
               </p>
-              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
-                {ABOUT_CONTENT.paragraph2}
-              </p>
-              <p className="text-sm sm:text-base text-zinc-600 leading-relaxed">
-                {ABOUT_CONTENT.paragraph3}
-              </p>
 
               <div className="pt-4 p-6 bg-white rounded-2xl border border-gold-500/30 shadow-sm space-y-2">
                 <span className="text-xs font-semibold uppercase tracking-widest text-gold-600 flex items-center gap-1.5">
@@ -67,6 +58,22 @@ export default function AboutPage() {
                 <p className="text-sm text-zinc-700 italic">
                   &ldquo;{ABOUT_CONTENT.founderNote}&rdquo;
                 </p>
+              </div>
+
+              <div className="pt-2 flex flex-wrap items-center gap-4">
+                <Link
+                  href="/services"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
+                >
+                  <span>Our Services</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </Link>
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs font-semibold text-noir-950 bg-white border border-zinc-300 hover:border-gold-500"
+                >
+                  <span>Contact Salon</span>
+                </Link>
               </div>
             </div>
 
@@ -119,17 +126,17 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Why Choose Us */}
+      {/* What Makes Us Different */}
       <WhyChooseUs />
 
       {/* CTA */}
       <section className="py-20 bg-cream-100 text-center border-t border-zinc-200">
         <div className="max-w-3xl mx-auto px-4 space-y-6">
           <h2 className="text-3xl sm:text-4xl font-serif text-noir-950">
-            Experience London&apos;s Finest Salon &amp; Aesthetic Care
+            Visit Glam &amp; Go
           </h2>
           <p className="text-sm sm:text-base text-zinc-600">
-            Visit us at Treaty Centre, Hounslow or book your bespoke appointment online today.
+            Unit 21, Treaty Centre, High St, Hounslow TW3 1ES
           </p>
           <div className="pt-2 flex flex-wrap justify-center gap-4">
             <Link

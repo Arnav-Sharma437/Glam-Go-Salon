@@ -10,9 +10,9 @@ import {
   Instagram,
   Facebook,
   Send,
-  Sparkles,
   CheckCircle2,
   AlertCircle,
+  ExternalLink,
 } from "lucide-react";
 import { SITE_INFO, SERVICES, ABOUT_CONTENT } from "@/data/siteContent";
 
@@ -63,7 +63,7 @@ export default function Footer() {
               <div className="relative h-14 w-52">
                 <Image
                   src="/images/logo/logo.png"
-                  alt="Glam & Go London"
+                  alt="Glam & Go"
                   fill
                   className="object-contain"
                 />
@@ -75,18 +75,18 @@ export default function Footer() {
 
             {/* Newsletter */}
             <div className="pt-2">
-              <h4 className="text-xs uppercase tracking-widest text-gold-400 font-semibold mb-2 flex items-center gap-2">
-                <Sparkles className="w-3.5 h-3.5" /> Newsletter Sign Up
+              <h4 className="text-xs uppercase tracking-widest text-gold-400 font-semibold mb-2">
+                Newsletter Sign Up
               </h4>
               <p className="text-xs text-zinc-400 mb-3">
-                Sign up for news and special offers.
+                Sign up for news and special offers
               </p>
               <form onSubmit={handleSubscribe} className="relative flex max-w-md">
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address"
+                  placeholder="Enter your email"
                   required
                   className="w-full bg-noir-900 border border-white/15 rounded-l-lg py-2.5 px-3.5 text-sm text-white placeholder-zinc-500 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500 transition-colors"
                 />
@@ -118,7 +118,7 @@ export default function Footer() {
               Services
             </h3>
             <ul className="space-y-2.5 text-sm text-zinc-300">
-              {SERVICES.slice(0, 5).map((service) => (
+              {SERVICES.map((service) => (
                 <li key={service.id}>
                   <Link
                     href={`/services/${service.slug}`}
@@ -157,7 +157,8 @@ export default function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-gold-400 transition-colors flex items-center gap-1 text-gold-400"
                 >
-                  Academy <span className="text-[10px] bg-gold-500/20 px-1.5 py-0.5 rounded">Portal</span>
+                  <span>Academy</span>
+                  <ExternalLink className="w-3 h-3 opacity-70" />
                 </a>
               </li>
               <li>
@@ -182,7 +183,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link href="/book" className="hover:text-gold-400 transition-colors font-medium text-gold-400">
-                  Book Online
+                  Book Now
                 </Link>
               </li>
             </ul>
@@ -229,7 +230,6 @@ export default function Footer() {
 
             {/* Social Links */}
             <div className="pt-2">
-              <span className="text-xs text-zinc-400 block mb-2">Connect With Us:</span>
               <div className="flex items-center gap-3">
                 <a
                   href="https://instagram.com"

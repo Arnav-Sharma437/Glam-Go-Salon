@@ -20,13 +20,12 @@ export default function ReviewsSection() {
             <SectionHeading
               eyebrow="What Our Clients Say"
               title="Verified Customer Reviews"
-              description="Read genuine feedback from our valued clients in Hounslow and across London."
               align="left"
               className="mb-0"
             />
             {/* Live Trust Banner */}
             <div className="mt-4 inline-flex items-center gap-3 bg-white px-4 py-2 rounded-full border border-zinc-200 shadow-sm text-xs">
-              <span className="font-bold text-noir-950">{SITE_INFO.googleReviewsCount} Google reviews</span>
+              <span className="font-bold text-noir-950">Glam &amp; Go — {SITE_INFO.googleReviewsCount}</span>
               <div className="flex items-center text-amber-400">
                 {[...Array(5)].map((_, i) => (
                   <Star key={i} className="w-3.5 h-3.5 fill-amber-400" />
@@ -52,10 +51,10 @@ export default function ReviewsSection() {
             <button
               onClick={() => setIsPaused(!isPaused)}
               title={isPaused ? "Resume continuous scrolling" : "Pause continuous scrolling"}
-              className="px-3 py-2 rounded-full bg-white border border-zinc-200 text-xs font-medium text-zinc-700 hover:border-gold-500 hover:text-noir-950 flex items-center gap-1.5 shadow-sm"
+              className="px-3.5 py-2 rounded-full bg-white border border-zinc-200 text-xs font-medium text-zinc-700 hover:border-gold-500 hover:text-noir-950 flex items-center gap-1.5 shadow-sm"
             >
               {isPaused ? <Play className="w-3.5 h-3.5 text-gold-600" /> : <Pause className="w-3.5 h-3.5 text-gold-600" />}
-              <span className="hidden sm:inline">{isPaused ? "Resume" : "Pause"}</span>
+              <span>{isPaused ? "Resume" : "Pause"}</span>
             </button>
           </div>
         </div>
@@ -66,7 +65,7 @@ export default function ReviewsSection() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Subtle edge fade overlays for premium container look */}
+          {/* Subtle edge fade overlays */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-cream-100 to-transparent z-10" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-cream-100 to-transparent z-10" />
 

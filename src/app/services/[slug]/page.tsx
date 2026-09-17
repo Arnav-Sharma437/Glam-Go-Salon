@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { ArrowLeft, ArrowRight, Check, Sparkles, Phone, CalendarCheck } from "lucide-react";
+import { ArrowLeft, Phone, CalendarCheck, Clock, Tag } from "lucide-react";
 import { SERVICES, SITE_INFO } from "@/data/siteContent";
 
 export async function generateStaticParams() {
@@ -22,7 +22,7 @@ export async function generateMetadata({
   if (!service) return { title: "Service Not Found" };
 
   return {
-    title: `${service.title} | Glam & Go London`,
+    title: `${service.title} | Glam & Go`,
     description: service.shortDesc,
   };
 }
@@ -75,7 +75,7 @@ export default async function ServiceDetailPage({
           <div className="lg:col-span-6 space-y-6">
             <div>
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
-                Premium Treatment
+                Salon Service
               </span>
               <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-noir-950 mt-1">
                 {service.title}
@@ -86,29 +86,43 @@ export default async function ServiceDetailPage({
               {service.fullDesc}
             </p>
 
-            {/* Popular Treatments */}
-            {service.popularTreatments && (
+            {/* Treatments & Pricing */}
+            {service.treatments && (
               <div className="p-6 bg-white rounded-2xl border border-zinc-200/80 shadow-sm space-y-4">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-gold-600 flex items-center gap-2">
-                  <Sparkles className="w-4 h-4" /> Popular In-Clinic Options &amp; Treatments
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-gold-600">
+                  Treatments &amp; Pricing
                 </h3>
-                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                  {service.popularTreatments.map((treatment, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-xs sm:text-sm text-zinc-700">
-                      <span className="w-4 h-4 rounded-full bg-gold-500/20 text-gold-600 flex items-center justify-center flex-shrink-0">
-                        <Check className="w-2.5 h-2.5" />
-                      </span>
-                      <span>{treatment}</span>
-                    </li>
+                <div className="space-y-2.5">
+                  {service.treatments.map((treatment, idx) => (
+                    <div
+                      key={idx}
+                      className="p-3.5 bg-cream-50 rounded-xl border border-zinc-200/70 flex items-center justify-between text-xs sm:text-sm"
+                    >
+                      <span className="font-medium text-noir-950">{treatment.name}</span>
+                      <div className="flex items-center gap-4 text-zinc-600">
+                        {treatment.duration && (
+                          <span className="flex items-center gap-1 text-xs">
+                            <Clock className="w-3.5 h-3.5 text-gold-600" />
+                            {treatment.duration}
+                          </span>
+                        )}
+                        {treatment.price && (
+                          <span className="flex items-center gap-1 font-semibold text-gold-700 text-xs">
+                            <Tag className="w-3.5 h-3.5" />
+                            {treatment.price}
+                          </span>
+                        )}
+                      </div>
+                    </div>
                   ))}
-                </ul>
+                </div>
               </div>
             )}
 
             {/* Booking Actions */}
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link
-                href={`/book?service=${encodeURIComponent(service.title)}`}
+                href={`/book?type=${service.bookingType}&service=${encodeURIComponent(service.title)}`}
                 className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
               >
                 <CalendarCheck className="w-4 h-4" />

@@ -25,9 +25,7 @@ export default function WhyChooseUs() {
     <section className="py-24 sm:py-32 bg-cream-50 text-noir-950 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <SectionHeading
-          eyebrow="Distinctive Excellence"
           title="What Makes Us Different?"
-          description="We take immense pride in setting the standard for care, comfort, and clinical precision in London."
           align="center"
         />
 
@@ -52,7 +50,7 @@ export default function WhyChooseUs() {
             ))}
           </div>
 
-          {/* Right: Premium Salon Visual Composition */}
+          {/* Right: Salon Visual Composition */}
           <div className="lg:col-span-5 relative">
             <div className="relative h-[480px] sm:h-[560px] w-full rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
               <Image
@@ -64,10 +62,10 @@ export default function WhyChooseUs() {
               <div className="absolute inset-0 bg-gradient-to-t from-noir-950/80 via-noir-950/20 to-transparent" />
               <div className="absolute bottom-6 left-6 right-6 text-white space-y-2">
                 <div className="text-xs uppercase tracking-widest text-gold-400 font-semibold">
-                  Hounslow Flagship
+                  Hounslow Salon
                 </div>
                 <div className="text-xl font-serif">
-                  A Welcoming Space Designed For Your Peace Of Mind
+                  A Welcoming Space Where You Feel Cared For
                 </div>
               </div>
             </div>

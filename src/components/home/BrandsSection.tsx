@@ -12,8 +12,7 @@ export default function BrandsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           eyebrow="What We Provide"
-          title="Our Products &amp; Formulations"
-          description="We exclusively partner with the world's most prestigious hair and clinical skincare houses to ensure unparalleled results."
+          title="Our Products"
           dark={true}
           align="center"
         />

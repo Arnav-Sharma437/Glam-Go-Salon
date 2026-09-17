@@ -2,23 +2,17 @@
 
 import React, { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import Image from "next/image";
 import Link from "next/link";
 import {
   Calendar,
-  Clock,
-  User,
-  Phone,
-  Mail,
-  Sparkles,
   CheckCircle2,
   AlertCircle,
   Activity,
   Scissors,
-  CreditCard,
-  Lock,
+  ExternalLink,
+  Phone,
 } from "lucide-react";
-import { SERVICES, SITE_INFO } from "@/data/siteContent";
+import { SERVICES, SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 
 function BookingContent() {
   const searchParams = useSearchParams();
@@ -55,19 +49,19 @@ function BookingContent() {
     bookingType === "clinical"
       ? [
           "AESTHETICS - SkinCeuticals Clinical Peel",
-          "AESTHETICS - Laser Skin Rejuvenation",
+          "AESTHETICS - Lynton Laser Skin Treatments",
           "AESTHETICS - Radio Frequency Skin Tightening",
-          "AESTHETICS - Microneedling & Collagen Therapy",
-          "AESTHETICS - Free Clinical Consultation",
+          "AESTHETICS - Free Aesthetics Consultation",
         ]
       : [
-          "BEAUTY & MAKEUP - Signature Glow Facial",
-          "BEAUTY & MAKEUP - Bridal & Party Makeup",
-          "BEAUTY & MAKEUP - Precision Eyebrow Shaping / Waxing",
-          "Hair - Bespoke Balayage & Colour",
-          "Hair - Cut & Luxury Styling",
+          "BEAUTY & MAKEUP - Professional Skincare & Facials",
+          "BEAUTY & MAKEUP - Makeup Artistry (Party & Bridal)",
+          "BEAUTY & MAKEUP - Eyebrow Threading & Tinting",
+          "BEAUTY & MAKEUP - Waxing Services",
+          "Hair - Cut, Wash & Blowdry",
+          "Hair - Balayage & Full Highlights",
+          "Hair - Hair Colouring & Gloss",
           "Hair - Keratin Hair Smoothing Treatment",
-          "Hair - Kérastase Intensive Scalp Ritual",
           "Complete Body & Wellness Care",
         ];
 
@@ -95,7 +89,7 @@ function BookingContent() {
       const data = await res.json();
       if (data.success) {
         setStatus("success");
-        setResponseMsg(data.message || "Your appointment has been requested successfully!");
+        setResponseMsg(data.message || "Your appointment request has been submitted successfully!");
       } else {
         setStatus("error");
         setResponseMsg(data.error || "Failed to submit booking request.");
@@ -111,13 +105,13 @@ function BookingContent() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 space-y-3">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-600">
-            Online Appointment Request
+            Appointments
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-noir-950">
-            Book Your Treatment
+            Book Your Appointment
           </h1>
           <p className="text-sm text-zinc-600 max-w-lg mx-auto">
-            Select your consultation type, date, and preferred specialist.
+            Book salon services or request a clinical aesthetic consultation.
           </p>
         </div>
 
@@ -151,7 +145,7 @@ function BookingContent() {
                   bookingType === "clinical" ? "text-zinc-400" : "text-zinc-500"
                 }`}
               >
-                Aesthetics &amp; Skin
+                Aesthetics (Phorest Ready)
               </div>
             </div>
           </button>
@@ -184,10 +178,26 @@ function BookingContent() {
                   bookingType === "salon" ? "text-zinc-400" : "text-zinc-500"
                 }`}
               >
-                Hair, Beauty &amp; Wellness
+                Hair &amp; Beauty (Fresha Ready)
               </div>
             </div>
           </button>
+        </div>
+
+        {/* External Platform Direct Booking Link Bar */}
+        <div className="mb-8 p-4 bg-white rounded-2xl border border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-xs text-zinc-600 text-center sm:text-left">
+            Prefer direct online booking via {bookingType === "clinical" ? "Phorest" : "Fresha"}?
+          </div>
+          <a
+            href={bookingType === "clinical" ? BOOKING_LINKS.clinicalPhorest : BOOKING_LINKS.salonFresha}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 rounded-full text-xs font-semibold bg-zinc-100 hover:bg-gold-500 hover:text-white transition-colors flex items-center gap-1.5"
+          >
+            <span>Book via {bookingType === "clinical" ? "Phorest Portal" : "Fresha Portal"}</span>
+            <ExternalLink className="w-3.5 h-3.5" />
+          </a>
         </div>
 
         {/* Booking Form Card */}
@@ -197,7 +207,7 @@ function BookingContent() {
               <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center mx-auto">
                 <CheckCircle2 className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-serif text-noir-950">Appointment Requested!</h3>
+              <h3 className="text-2xl font-serif text-noir-950">Appointment Requested</h3>
               <p className="text-sm text-zinc-600 max-w-md mx-auto">{responseMsg}</p>
               <div className="p-4 bg-cream-50 rounded-2xl border border-zinc-200 text-xs text-zinc-700 max-w-md mx-auto text-left space-y-1">
                 <div>
@@ -207,7 +217,7 @@ function BookingContent() {
                   <strong>Date:</strong> {formData.preferredDate} at {formData.preferredTime}
                 </div>
                 <div>
-                  <strong>Location:</strong> Treaty Centre, Hounslow
+                  <strong>Location:</strong> Unit 21, Treaty Centre, Hounslow TW3 1ES
                 </div>
               </div>
               <div className="pt-4 flex justify-center gap-4">
@@ -215,7 +225,7 @@ function BookingContent() {
                   onClick={() => setStatus("idle")}
                   className="px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-noir-950 text-white hover:bg-gold-500 hover:text-noir-950 transition-colors"
                 >
-                  Book Another Appointment
+                  Book Another
                 </button>
                 <Link
                   href="/"
@@ -238,7 +248,7 @@ function BookingContent() {
                   onChange={(e) => setSelectedService(e.target.value)}
                   className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                 >
-                  <option value="">-- Choose a treatment or service --</option>
+                  <option value="">-- Select treatment --</option>
                   {serviceOptions.map((opt, i) => (
                     <option key={i} value={opt}>
                       {opt}
@@ -251,14 +261,14 @@ function BookingContent() {
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                    Your Full Name *
+                    Full Name *
                   </label>
                   <input
                     type="text"
                     required
                     value={formData.clientName}
                     onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                    placeholder="Full name"
+                    placeholder="Your name"
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   />
                 </div>
@@ -271,7 +281,7 @@ function BookingContent() {
                     required
                     value={formData.clientEmail}
                     onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
-                    placeholder="Email"
+                    placeholder="Your email"
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   />
                 </div>
@@ -284,7 +294,7 @@ function BookingContent() {
                     required
                     value={formData.clientPhone}
                     onChange={(e) => setFormData({ ...formData, clientPhone: e.target.value })}
-                    placeholder="+44 7..."
+                    placeholder="+44..."
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   />
                 </div>
@@ -306,7 +316,7 @@ function BookingContent() {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                    Preferred Time Slot *
+                    Preferred Time *
                   </label>
                   <select
                     value={formData.preferredTime}
@@ -325,7 +335,7 @@ function BookingContent() {
                 </div>
                 <div>
                   <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                    Specialist Preference
+                    Specialist (Optional)
                   </label>
                   <input
                     type="text"
@@ -333,7 +343,7 @@ function BookingContent() {
                     onChange={(e) =>
                       setFormData({ ...formData, practitionerPreference: e.target.value })
                     }
-                    placeholder="e.g. Any / Karan / Lovely"
+                    placeholder="Any Specialist"
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   />
                 </div>
@@ -342,23 +352,15 @@ function BookingContent() {
               {/* Notes */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                  Special Notes or Requirements
+                  Notes
                 </label>
                 <textarea
                   rows={3}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="e.g. Hijab-friendly private suite requested, skin allergies, etc."
+                  placeholder="Any specific requests or requirements..."
                   className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white resize-none"
                 />
-              </div>
-
-              {/* Payment Info Note */}
-              <div className="p-4 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900 flex items-start gap-3">
-                <Lock className="w-4 h-4 text-amber-600 flex-shrink-0 mt-0.5" />
-                <div>
-                  <span className="font-bold">No upfront payment required today.</span> Our reception will review availability, confirm your slot, and discuss deposit details where applicable.
-                </div>
               </div>
 
               {status === "error" && (
@@ -374,7 +376,7 @@ function BookingContent() {
                 className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
               >
                 <Calendar className="w-4 h-4" />
-                <span>{status === "loading" ? "Submitting Request..." : "Confirm Appointment Request"}</span>
+                <span>{status === "loading" ? "Submitting..." : "Submit Appointment Request"}</span>
               </button>
             </form>
           )}
@@ -386,7 +388,7 @@ function BookingContent() {
 
 export default function BookPage() {
   return (
-    <Suspense fallback={<div className="py-20 text-center">Loading Booking System...</div>}>
+    <Suspense fallback={<div className="py-20 text-center">Loading Booking...</div>}>
       <BookingContent />
     </Suspense>
   );

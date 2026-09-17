@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
+import Link from "next/link";
 import {
   MapPin,
   Phone,
@@ -10,10 +10,11 @@ import {
   Send,
   CheckCircle2,
   AlertCircle,
-  Sparkles,
+  MessageCircle,
+  Navigation,
+  Calendar,
 } from "lucide-react";
 import { SITE_INFO } from "@/data/siteContent";
-import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ export default function ContactPage() {
 
       if (data.success) {
         setStatus("success");
-        setResponseMsg(data.message || "Thank you! We have received your inquiry.");
+        setResponseMsg(data.message || "Thank you! We have received your message.");
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
         setStatus("error");
@@ -63,8 +64,51 @@ export default function ContactPage() {
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif">Contact Us</h1>
           <p className="mt-4 text-zinc-300 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            We are located in the Treaty Centre on High Street, Hounslow. We look forward to welcoming you.
+            Located in the Treaty Centre on High Street, Hounslow.
           </p>
+        </div>
+      </section>
+
+      {/* Quick Action Bar (Book Now, Call Us, WhatsApp Us, Get Directions) */}
+      <section className="bg-white border-b border-zinc-200 py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <Link
+              href="/book"
+              className="p-4 rounded-2xl bg-noir-950 text-white hover:bg-gold-500 hover:text-noir-950 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider shadow-sm"
+            >
+              <Calendar className="w-4 h-4" />
+              <span>Book Now</span>
+            </Link>
+
+            <a
+              href={`tel:${SITE_INFO.phonePrimaryClean}`}
+              className="p-4 rounded-2xl bg-cream-50 border border-zinc-200 hover:border-gold-500 text-noir-950 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider shadow-sm"
+            >
+              <Phone className="w-4 h-4 text-gold-600" />
+              <span>Call Us</span>
+            </a>
+
+            <a
+              href={SITE_INFO.whatsAppUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 hover:bg-emerald-100 text-emerald-950 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider shadow-sm"
+            >
+              <MessageCircle className="w-4 h-4 text-emerald-600" />
+              <span>WhatsApp Us</span>
+            </a>
+
+            <a
+              href={SITE_INFO.googleMapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-4 rounded-2xl bg-cream-50 border border-zinc-200 hover:border-gold-500 text-noir-950 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider shadow-sm"
+            >
+              <Navigation className="w-4 h-4 text-gold-600" />
+              <span>Get Directions</span>
+            </a>
+          </div>
         </div>
       </section>
 
@@ -90,10 +134,18 @@ export default function ContactPage() {
                     <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-noir-950">Our Address</h3>
+                    <h3 className="text-sm font-semibold text-noir-950">Address</h3>
                     <p className="text-xs sm:text-sm text-zinc-600 mt-1 leading-relaxed">
                       {SITE_INFO.address}
                     </p>
+                    <a
+                      href={SITE_INFO.googleMapsUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xs text-gold-600 hover:underline mt-2 inline-block font-semibold"
+                    >
+                      View on Google Maps →
+                    </a>
                   </div>
                 </div>
 
@@ -125,7 +177,7 @@ export default function ContactPage() {
                     <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-noir-950">Email Address</h3>
+                    <h3 className="text-sm font-semibold text-noir-950">Email</h3>
                     <a
                       href={`mailto:${SITE_INFO.email}`}
                       className="text-xs sm:text-sm text-gold-600 hover:underline mt-1 block break-all"
@@ -150,24 +202,24 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Right: Interactive Contact Form */}
+            {/* Right: Contact Form */}
             <div className="lg:col-span-7 bg-white p-8 sm:p-10 rounded-3xl border border-zinc-200/80 shadow-luxury">
               <div className="mb-6 space-y-2">
                 <span className="text-xs font-semibold uppercase tracking-widest text-gold-600">
                   Send A Message
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-serif text-noir-950">
-                  How Can We Assist You?
+                  Enquiry Form
                 </h2>
                 <p className="text-xs sm:text-sm text-zinc-500">
-                  Fill in the form below and our salon reception will get back to you promptly.
+                  Please complete the form below and our team will get back to you.
                 </p>
               </div>
 
               {status === "success" ? (
                 <div className="p-8 text-center bg-emerald-50 rounded-2xl border border-emerald-200 space-y-4">
                   <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-                  <h3 className="text-xl font-serif text-emerald-900">Message Delivered!</h3>
+                  <h3 className="text-xl font-serif text-emerald-900">Message Sent</h3>
                   <p className="text-sm text-emerald-700">{responseMsg}</p>
                   <button
                     onClick={() => setStatus("idle")}
@@ -188,7 +240,7 @@ export default function ContactPage() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        placeholder="e.g. Sarah Jenkins"
+                        placeholder="Your name"
                         className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
                       />
                     </div>
@@ -201,7 +253,7 @@ export default function ContactPage() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="e.g. sarah@example.com"
+                        placeholder="Your email"
                         className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
                       />
                     </div>
@@ -216,7 +268,7 @@ export default function ContactPage() {
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="+44 7..."
+                        placeholder="Your phone"
                         className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
                       />
                     </div>
@@ -228,7 +280,7 @@ export default function ContactPage() {
                         type="text"
                         value={formData.subject}
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                        placeholder="e.g. Aesthetic Consultation"
+                        placeholder="Service enquiry"
                         className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white transition-all"
                       />
                     </div>
@@ -243,7 +295,7 @@ export default function ContactPage() {
                       required
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                      placeholder="Please share any details about the treatment you are interested in..."
+                      placeholder="How can we assist you?"
                       className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white transition-all resize-none"
                     />
                   </div>
@@ -261,7 +313,7 @@ export default function ContactPage() {
                     className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
                   >
                     <Send className="w-4 h-4" />
-                    <span>{status === "loading" ? "Sending Inquiry..." : "Submit Inquiry"}</span>
+                    <span>{status === "loading" ? "Sending..." : "Submit Enquiry"}</span>
                   </button>
                 </form>
               )}

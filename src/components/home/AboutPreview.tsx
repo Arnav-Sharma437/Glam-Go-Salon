@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles, Check } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
 import { ABOUT_CONTENT } from "@/data/siteContent";
 
 export default function AboutPreview() {
@@ -46,7 +46,7 @@ export default function AboutPreview() {
                   <div className="text-xs font-semibold uppercase tracking-wider text-gold-400">
                     Years Of Legacy
                   </div>
-                  <div className="text-[11px] text-zinc-400">Hounslow Beauty Sanctuary</div>
+                  <div className="text-[11px] text-zinc-400">Hounslow Beauty Haven</div>
                 </div>
               </div>
             </div>
@@ -72,33 +72,6 @@ export default function AboutPreview() {
               {ABOUT_CONTENT.paragraph1}
             </p>
 
-            <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm text-zinc-700 font-medium">
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-gold-500/15 text-gold-600 flex items-center justify-center">
-                  <Check className="w-3 h-3" />
-                </span>
-                <span>All-in-One Beauty Destination</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-gold-500/15 text-gold-600 flex items-center justify-center">
-                  <Check className="w-3 h-3" />
-                </span>
-                <span>Medical-Grade Aesthetic Technology</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-gold-500/15 text-gold-600 flex items-center justify-center">
-                  <Check className="w-3 h-3" />
-                </span>
-                <span>VTCT &amp; CPD Accredited Standards</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="w-5 h-5 rounded-full bg-gold-500/15 text-gold-600 flex items-center justify-center">
-                  <Check className="w-3 h-3" />
-                </span>
-                <span>Bespoke Personalized Consultations</span>
-              </div>
-            </div>
-
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <Link
                 href="/about"
@@ -111,7 +84,7 @@ export default function AboutPreview() {
                 href="/services"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full text-xs sm:text-sm font-semibold tracking-wider text-noir-950 hover:text-gold-600 transition-colors"
               >
-                <span>View Our Treatments</span>
+                <span>View Our Services</span>
               </Link>
             </div>
           </div>

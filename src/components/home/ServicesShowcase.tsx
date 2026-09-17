@@ -3,82 +3,38 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles, ExternalLink, Pause, Play } from "lucide-react";
-import { SERVICES, SITE_INFO } from "@/data/siteContent";
+import { ArrowRight, Sparkles, Pause, Play } from "lucide-react";
+import { SERVICES } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function ServicesShowcase() {
-  const [activeFilter, setActiveFilter] = useState<string>("all");
   const [isPaused, setIsPaused] = useState<boolean>(false);
 
-  const filteredServices =
-    activeFilter === "all"
-      ? SERVICES
-      : SERVICES.filter((s) =>
-          activeFilter === "academy"
-            ? s.slug.includes("academy") || s.slug.includes("cpd")
-            : !s.slug.includes("academy") && !s.slug.includes("cpd")
-        );
-
-  // Duplicate items to make the continuous infinite loop seamless
-  const loopServices = [...filteredServices, ...filteredServices, ...filteredServices];
+  // Duplicate the 4 authentic salon services for seamless infinite marquee loop
+  const loopServices = [...SERVICES, ...SERVICES, ...SERVICES];
 
   return (
     <section className="py-24 sm:py-32 bg-cream-100 text-noir-950 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header with Title & Filter Controls */}
+        {/* Header with Title */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <SectionHeading
             eyebrow="What We Offer"
             title="Our Services"
-            description="Explore our bespoke collection of premium hair, beauty, wellness, and advanced aesthetics."
+            description="Explore our complete range of premium hair, beauty, and aesthetic services."
             align="left"
             className="mb-0 max-w-2xl"
           />
 
-          {/* Controls & Filter */}
+          {/* Controls */}
           <div className="flex items-center gap-3 self-start md:self-end">
-            <div className="flex items-center gap-2 bg-white/80 backdrop-blur-sm p-1.5 rounded-full border border-zinc-200/80 shadow-sm">
-              <button
-                onClick={() => setActiveFilter("all")}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
-                  activeFilter === "all"
-                    ? "bg-noir-950 text-white shadow"
-                    : "text-zinc-600 hover:text-noir-950"
-                }`}
-              >
-                All Services
-              </button>
-              <button
-                onClick={() => setActiveFilter("salon")}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
-                  activeFilter === "salon"
-                    ? "bg-noir-950 text-white shadow"
-                    : "text-zinc-600 hover:text-noir-950"
-                }`}
-              >
-                Salon &amp; Aesthetics
-              </button>
-              <button
-                onClick={() => setActiveFilter("academy")}
-                className={`px-4 py-1.5 rounded-full text-xs font-semibold tracking-wide transition-all ${
-                  activeFilter === "academy"
-                    ? "bg-noir-950 text-white shadow"
-                    : "text-zinc-600 hover:text-noir-950"
-                }`}
-              >
-                Academy
-              </button>
-            </div>
-
-            {/* Play/Pause Toggle Indicator */}
             <button
               onClick={() => setIsPaused(!isPaused)}
               title={isPaused ? "Resume continuous scrolling" : "Pause continuous scrolling"}
-              className="px-3 py-2 rounded-full bg-white border border-zinc-200 text-xs font-medium text-zinc-700 hover:border-gold-500 hover:text-noir-950 flex items-center gap-1.5 shadow-sm"
+              className="px-3.5 py-2 rounded-full bg-white border border-zinc-200 text-xs font-medium text-zinc-700 hover:border-gold-500 hover:text-noir-950 flex items-center gap-1.5 shadow-sm"
             >
               {isPaused ? <Play className="w-3.5 h-3.5 text-gold-600" /> : <Pause className="w-3.5 h-3.5 text-gold-600" />}
-              <span className="hidden sm:inline">{isPaused ? "Resume" : "Pause"}</span>
+              <span>{isPaused ? "Resume" : "Pause"}</span>
             </button>
           </div>
         </div>
@@ -89,7 +45,7 @@ export default function ServicesShowcase() {
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
         >
-          {/* Subtle edge fade overlays for premium container look */}
+          {/* Edge fade overlays */}
           <div className="pointer-events-none absolute inset-y-0 left-0 w-8 sm:w-16 bg-gradient-to-r from-cream-100 to-transparent z-10" />
           <div className="pointer-events-none absolute inset-y-0 right-0 w-8 sm:w-16 bg-gradient-to-l from-cream-100 to-transparent z-10" />
 
@@ -98,9 +54,7 @@ export default function ServicesShowcase() {
             style={{ animationPlayState: isPaused ? "paused" : "running" }}
           >
             {loopServices.map((service, index) => {
-              const isAcademyService =
-                service.slug.includes("academy") || service.slug.includes("cpd");
-              const originalIndex = index % filteredServices.length;
+              const originalIndex = index % SERVICES.length;
 
               return (
                 <div
@@ -141,31 +95,19 @@ export default function ServicesShowcase() {
 
                     {/* Card Footer CTAs */}
                     <div className="pt-4 border-t border-zinc-100 flex items-center justify-between">
-                      {isAcademyService ? (
-                        <a
-                          href={SITE_INFO.academyUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600 hover:text-gold-700 transition-colors"
-                        >
-                          <span>Academy Portal</span>
-                          <ExternalLink className="w-3.5 h-3.5" />
-                        </a>
-                      ) : (
-                        <Link
-                          href={`/services/${service.slug}`}
-                          className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600 hover:text-gold-700 transition-colors"
-                        >
-                          <span>Learn More</span>
-                          <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                        </Link>
-                      )}
+                      <Link
+                        href={`/services/${service.slug}`}
+                        className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-gold-600 hover:text-gold-700 transition-colors"
+                      >
+                        <span>Learn More</span>
+                        <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                      </Link>
 
                       <Link
-                        href={isAcademyService ? "/contact" : `/book?service=${encodeURIComponent(service.title)}`}
+                        href={`/book?type=${service.bookingType}&service=${encodeURIComponent(service.title)}`}
                         className="px-4 py-2 rounded-full text-xs font-semibold bg-noir-950 text-white hover:bg-gold-500 hover:text-noir-950 transition-colors"
                       >
-                        {isAcademyService ? "Enquire" : "Book Now"}
+                        Book Now
                       </Link>
                     </div>
                   </div>
@@ -182,7 +124,7 @@ export default function ServicesShowcase() {
             className="inline-flex items-center gap-3 px-8 py-4 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-noir-950 bg-white hover:bg-noir-950 hover:text-white border-2 border-noir-950 transition-all duration-300 shadow-sm"
           >
             <Sparkles className="w-4 h-4 text-gold-500" />
-            <span>View All Services &amp; Treatments</span>
+            <span>View All Services</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

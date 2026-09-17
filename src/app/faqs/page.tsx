@@ -1,11 +1,9 @@
 "use client";
 
 import React, { useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
-import { ChevronDown, Sparkles, HelpCircle, Phone } from "lucide-react";
+import { ChevronDown, Phone } from "lucide-react";
 import { FAQS, SITE_INFO } from "@/data/siteContent";
-import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function FaqsPage() {
   const [openIdx, setOpenIdx] = useState<number | null>(0);
@@ -20,11 +18,11 @@ export default function FaqsPage() {
       <section className="bg-noir-950 text-white py-20 lg:py-28 relative overflow-hidden border-b border-gold-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="text-xs uppercase tracking-[0.25em] font-semibold text-gold-400 mb-3 inline-block">
-            Frequently Asked Questions
+            Information
           </span>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif">Got Questions?</h1>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif">Frequently Asked Questions</h1>
           <p className="mt-4 text-zinc-300 max-w-2xl mx-auto text-sm sm:text-base font-light">
-            Everything you need to know about our treatments, booking policies, consultations, and salon etiquette.
+            Answers to common questions about our salon, services, and consultations.
           </p>
         </div>
       </section>
@@ -67,11 +65,11 @@ export default function FaqsPage() {
             })}
           </div>
 
-          {/* Still Have Questions Box */}
+          {/* Need More Assistance Box */}
           <div className="mt-16 bg-noir-950 text-white p-8 sm:p-10 rounded-3xl border border-gold-500/30 text-center space-y-4">
-            <h3 className="text-2xl font-serif text-gold-400">Still have questions?</h3>
+            <h3 className="text-2xl font-serif text-gold-400">Have More Questions?</h3>
             <p className="text-sm text-zinc-300 max-w-lg mx-auto">
-              Our specialists are always on hand to assist you with treatment recommendations and booking inquiries.
+              Please call our salon or send us an enquiry directly.
             </p>
             <div className="pt-2 flex flex-wrap justify-center gap-4">
               <a
@@ -85,7 +83,7 @@ export default function FaqsPage() {
                 href="/contact"
                 className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors"
               >
-                <span>Send Us A Message</span>
+                <span>Contact Us</span>
               </Link>
             </div>
           </div>

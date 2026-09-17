@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { GALLERY_ITEMS } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 
@@ -13,7 +13,6 @@ export default function GallerySection() {
           <SectionHeading
             eyebrow="Photo Gallery"
             title="Timeless Beauties"
-            description="A glimpse into the transformations, luxurious ambiance, and meticulous artistry created daily at Glam & Go."
             align="left"
             className="mb-0"
           />
@@ -22,7 +21,7 @@ export default function GallerySection() {
             href="/gallery"
             className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-wider bg-noir-950 text-white hover:bg-gold-500 hover:text-noir-950 transition-colors self-start md:self-end shadow-sm"
           >
-            <span>View Full Gallery</span>
+            <span>View Gallery</span>
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

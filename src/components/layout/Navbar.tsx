@@ -9,15 +9,14 @@ import { SITE_INFO } from "@/data/siteContent";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "About Us", href: "/about" },
-  { label: "Our Services", href: "/services" },
   {
     label: "Academy",
     href: SITE_INFO.academyUrl,
     isExternal: true,
-    badge: "External Portal",
   },
-  { label: "FAQs", href: "/faqs" },
+  { label: "About Us", href: "/about" },
+  { label: "Our Services", href: "/services" },
+  { label: "FAQ's", href: "/faqs" },
   { label: "Contact Us", href: "/contact" },
 ];
 
@@ -149,9 +148,7 @@ export default function Navbar() {
                     className="flex items-center justify-between py-2 text-base font-medium text-gold-400 hover:text-gold-300 border-b border-white/5"
                   >
                     <span>{link.label}</span>
-                    <span className="text-xs bg-gold-500/20 text-gold-300 px-2 py-0.5 rounded border border-gold-500/30 flex items-center gap-1">
-                      Dedicated Website <ExternalLink className="w-3 h-3" />
-                    </span>
+                    <ExternalLink className="w-4 h-4 opacity-70" />
                   </a>
                 );
               }
