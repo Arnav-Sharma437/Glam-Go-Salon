@@ -6,6 +6,7 @@ import Footer from "@/components/layout/Footer";
 import { SITE_INFO } from "@/data/siteContent";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://glamandgolondon.com"),
   title: {
     default: "Glam and Go – Luxury Aesthetic & Beauty Salon | London",
     template: "%s | Glam & Go London",
