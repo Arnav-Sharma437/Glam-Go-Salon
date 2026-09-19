@@ -70,7 +70,7 @@ h1, h2, h3, h4, .font-serif {
   scrollbar-width: none;
 }
 
-/* Continuous infinite scroll marquee */
+/* Continuous infinite scroll marquee - Smooth & Normal readable pace */
 @keyframes marquee-scroll {
   0% {
     transform: translateX(0%);
@@ -83,13 +83,13 @@ h1, h2, h3, h4, .font-serif {
 .animate-marquee-continuous {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 45s linear infinite;
+  animation: marquee-scroll 60s linear infinite;
 }
 
 .animate-marquee-continuous-fast {
   display: flex;
   width: max-content;
-  animation: marquee-scroll 35s linear infinite;
+  animation: marquee-scroll 55s linear infinite;
 }
 
 .pause-hover:hover .animate-marquee-continuous,
