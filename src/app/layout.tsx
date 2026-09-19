@@ -3,6 +3,7 @@ import "./globals.css";
 import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
+import MobileAppTabBar from "@/components/layout/MobileAppTabBar";
 import { SITE_INFO } from "@/data/siteContent";
 
 export const metadata: Metadata = {
@@ -57,11 +58,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="min-h-screen flex flex-col bg-cream-50 text-noir-950 antialiased selection:bg-gold-500 selection:text-noir-950">
+      <body className="min-h-screen flex flex-col bg-cream-50 text-noir-950 antialiased selection:bg-gold-500 selection:text-noir-950 pb-16 md:pb-0">
         <TopBar />
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />
+        <MobileAppTabBar />
       </body>
     </html>
   );

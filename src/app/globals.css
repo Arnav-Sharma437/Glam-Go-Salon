@@ -97,3 +97,20 @@ h1, h2, h3, h4, .font-serif {
   animation-play-state: paused;
 }
 
+/* Mobile App Native Feel Enhancements */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 16px);
+}
+
+@media (max-width: 768px) {
+  /* Prevent blue tap highlights and enhance mobile touch fluidity */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth scrolling across iOS and Android browsers */
+  html {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
