@@ -6,8 +6,8 @@ import { ArrowRight, Clock, Tag, ShieldCheck, Sparkles, CheckCircle2, Phone, Cal
 import { SERVICES, SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 
 export const metadata: Metadata = {
-  title: "Laser Hair Removal Hounslow | Medical-Grade Laser | Glam & Go",
-  description: "Discover safe, medical-grade laser hair removal in Hounslow at Glam & Go Beauty Salon. Long-lasting smooth results across all skin tones with certified laser specialists.",
+  title: "Laser Hair Removal Hounslow | Glam & Go Beauty Salon",
+  description: "Discover laser hair removal in Hounslow at Glam & Go Beauty Salon. Hair reduction across all areas with consultation and patch test.",
 };
 
 export default function LaserHairRemovalPage() {
@@ -28,13 +28,13 @@ export default function LaserHairRemovalPage() {
         </div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
           <span className="text-xs uppercase tracking-[0.25em] font-semibold text-gold-400 mb-3 inline-block">
-            Advanced Medical Technology • Hounslow
+            Laser Hair Removal • Hounslow
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-serif text-white">
             Laser Hair Removal
           </h1>
           <p className="mt-4 text-zinc-300 max-w-2xl mx-auto text-sm sm:text-base font-light leading-relaxed">
-            Safe, medical-grade laser hair removal delivering smooth, long-lasting reduction across all skin tones. Centrally located in Treaty Centre, Hounslow.
+            Laser hair removal delivering smooth reduction across face and body areas. Centrally located in Treaty Centre, Hounslow.
           </p>
           <div className="mt-8 flex flex-wrap justify-center items-center gap-4">
             <a
@@ -71,7 +71,7 @@ export default function LaserHairRemovalPage() {
                   className="object-cover"
                 />
                 <div className="absolute top-4 left-4 bg-noir-950/80 backdrop-blur-md text-gold-400 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-gold-500/30 uppercase tracking-wider">
-                  Medical-Grade Laser
+                  Laser Hair Removal
                 </div>
               </div>
 
@@ -84,19 +84,19 @@ export default function LaserHairRemovalPage() {
                 <ul className="space-y-3 text-xs sm:text-sm text-zinc-700">
                   <li className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
-                    <span><strong>Hijab-Friendly &amp; Private:</strong> Dedicated private treatment suites for your complete comfort and dignity.</span>
+                    <span><strong>Hijab-Friendly &amp; Private:</strong> Dedicated private treatment suites for your complete comfort and privacy.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
-                    <span><strong>Certified Specialists:</strong> Fully qualified practitioners with extensive clinical laser experience.</span>
+                    <span><strong>Consultation &amp; Patch Test:</strong> Skin assessment and patch test prior to starting treatment.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
-                    <span><strong>Free Consultation &amp; Patch Test:</strong> Detailed skin assessment prior to every treatment plan.</span>
+                    <span><strong>Full Body &amp; Targeted Areas:</strong> Treatment plans available for face, arms, legs, underarms and body.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <CheckCircle2 className="w-4 h-4 text-gold-600 shrink-0 mt-0.5" />
-                    <span><strong>Central Hounslow Location:</strong> Located in Treaty Centre with accessible parking.</span>
+                    <span><strong>Central Hounslow Location:</strong> Located in Treaty Centre with accessible parking nearby.</span>
                   </li>
                 </ul>
               </div>
@@ -112,7 +112,7 @@ export default function LaserHairRemovalPage() {
                   Laser Hair Removal Treatments
                 </h2>
                 <p className="mt-3 text-sm sm:text-base text-zinc-600 leading-relaxed">
-                  Select your treatment below to book instantly via our verified booking route or reserve your in-depth consultation with our specialists.
+                  Select your treatment below to book directly on Fresha or reserve your consultation with our team.
                 </p>
               </div>
 
