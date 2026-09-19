@@ -1,3 +1,11 @@
+export interface TreatmentItem {
+  name: string;
+  duration?: string;
+  price?: string;
+  freshaUrl?: string;
+  description?: string;
+}
+
 export interface ServiceItem {
   id: string;
   slug: string;
@@ -7,13 +15,8 @@ export interface ServiceItem {
   fullDesc: string;
   image: string;
   bookingType: "salon" | "clinical";
-  duration?: string;
   startingPrice?: string;
-  treatments?: {
-    name: string;
-    duration?: string;
-    price?: string;
-  }[];
+  treatments?: TreatmentItem[];
 }
 
 export interface ReviewItem {
@@ -32,8 +35,9 @@ export interface WhyUsItem {
 }
 
 export const BOOKING_LINKS = {
-  salonFresha: "https://www.fresha.com", // Client configurable Fresha booking URL
-  clinicalPhorest: "https://www.phorest.com", // Client configurable Phorest clinical booking URL
+  salonFresha: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
+  clinicalPhorest: "https://www.phorest.com/salon/glamourhairbeautytheglamclinic",
+  laserBooking: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
 };
 
 export const SITE_INFO = {
@@ -74,7 +78,7 @@ export const HERO_SLIDES = [
     title: "Step In Beautiful, Step Out Glamorous",
     description: "Delivering exceptional care and results tailored to every client under one roof.",
     image: "/images/banners/banner-beauty.png",
-    primaryCta: { label: "Salon Services", href: "/services" },
+    primaryCta: { label: "Laser Hair Removal", href: "/laser-hair-removal" },
     secondaryCta: { label: "Clinical Booking", href: "/book?type=clinical" },
   },
 ];
@@ -98,69 +102,137 @@ export const ABOUT_CONTENT = {
   image2: "/images/salon/treatment-suite.jpg",
 };
 
-// 4 Pure Salon Services
+// Complete 7 Distinct Services Catalogue
 export const SERVICES: ServiceItem[] = [
   {
-    id: "service-1",
-    slug: "beauty-makeup",
-    title: "BEAUTY & MAKEUP",
-    category: "Beauty & Makeup",
+    id: "service-laser",
+    slug: "laser-hair-removal",
+    title: "Laser Hair Removal",
+    category: "Laser Hair Removal",
     bookingType: "salon",
-    shortDesc: "Our VTCT-certified beauty therapists have over 10 years of industry experience, providing professional skincare, facials, makeup artistry, and beauty treatments. Using advanced techniques and premium products, we create personalised experiences tailored to your individual needs. Our goal is to enhance your natural beauty while helping you feel confident, refreshed, and radiant.",
-    fullDesc: "Our VTCT-certified beauty therapists have over 10 years of industry experience, providing professional skincare, facials, makeup artistry, and beauty treatments. Using advanced techniques and premium products, we create personalised experiences tailored to your individual needs. Our goal is to enhance your natural beauty while helping you feel confident, refreshed, and radiant.",
-    image: "/images/services/beauty-makeup.jpg",
+    shortDesc: "Experience state-of-the-art medical-grade laser hair removal at Glam & Go Hounslow. Our certified laser specialists use advanced technology for safe, smooth, long-lasting hair reduction across all skin tones.",
+    fullDesc: "Experience state-of-the-art medical-grade laser hair removal at Glam & Go Hounslow. Our certified laser specialists use advanced technology for safe, smooth, long-lasting hair reduction across all skin tones. Every treatment begins with an in-depth consultation and patch test to tailor settings to your skin and hair type for optimal comfort and results.",
+    image: "/images/services/laser-hair-removal.jpg",
+    startingPrice: "Consultation & Custom Courses Available",
     treatments: [
-      { name: "Professional Skincare & Facials", duration: "Available upon booking", price: "Starting from £35" },
-      { name: "Makeup Artistry (Party & Bridal)", duration: "Available upon booking", price: "Price on consultation" },
-      { name: "Eyebrow Threading & Tinting", duration: "15-30 mins", price: "Starting from £10" },
-      { name: "Waxing Services", duration: "Available upon booking", price: "Starting from £15" },
+      { name: "Laser Hair Removal Consultation & Patch Test", duration: "15-30 mins", price: "Free Consultation", description: "Mandatory skin consultation and patch test before starting course." },
+      { name: "Full Face Laser Hair Removal", duration: "30 mins", price: "Price on consultation / Fresha", description: "Precision upper lip, chin, cheeks and jawline hair reduction." },
+      { name: "Underarms Laser Treatment", duration: "15-20 mins", price: "Price on consultation / Fresha", description: "Quick, effective underarm laser hair removal session." },
+      { name: "Full Arms & Half Arms", duration: "30-45 mins", price: "Price on consultation / Fresha", description: "Smooth arms treatment for gentle, lasting reduction." },
+      { name: "Full Legs & Half Legs", duration: "45-60 mins", price: "Price on consultation / Fresha", description: "Complete legs laser session using cooling glide technology." },
+      { name: "Bikini Line / Brazilian / Hollywood", duration: "20-30 mins", price: "Price on consultation / Fresha", description: "Private, hygienic intimate area laser hair removal." },
+      { name: "Full Body Laser Hair Removal Course", duration: "90-120 mins", price: "Price on consultation / Fresha", description: "Comprehensive full body package tailored to individual courses." },
     ],
   },
   {
-    id: "service-2",
+    id: "service-facials",
+    slug: "facials",
+    title: "Facials",
+    category: "Facials",
+    bookingType: "clinical",
+    shortDesc: "Rejuvenate and deeply refresh your complexion with our luxury and clinical facials, including SkinCeuticals professional peels and advanced radiofrequency treatments in Hounslow.",
+    fullDesc: "Rejuvenate and deeply refresh your complexion with our luxury and clinical facials, including SkinCeuticals professional peels and advanced radiofrequency treatments in Hounslow. Each facial is customised to target specific skin concerns such as dullness, congestion, fine lines, or dehydration.",
+    image: "/images/services/facials.jpg",
+    startingPrice: "From £90",
+    treatments: [
+      { name: "SkinCeuticals Gel Peel", duration: "45 mins", price: "£90", description: "Revitalising clinical gel peel targeting dull skin and uneven tone." },
+      { name: "20% Glycolic Peel", duration: "45 mins", price: "£120", description: "Targeted medical peel for texture refinement and deep cellular renewal." },
+      { name: "30% Glycolic Peel", duration: "45 mins", price: "£130", description: "Intensive chemical exfoliation for advanced skin renewal and radiance." },
+      { name: "Radiofrequency Facial", duration: "45-60 mins", price: "£100", description: "Collagen-stimulating radiofrequency energy for instant facial lift and tightening." },
+      { name: "Radiofrequency Facial (Course of 5)", duration: "5 sessions", price: "£400", description: "Complete course of 5 sessions for sustained collagen remodelling and skin firmness." },
+      { name: "Professional Skincare & Custom Facial", duration: "45-60 mins", price: "Price on consultation", description: "Bespoke facial treatment tailored to your skin type and hydration needs." },
+    ],
+  },
+  {
+    id: "service-skin-treatments",
+    slug: "skin-treatments",
+    title: "Skin Treatments",
+    category: "Skin Treatments",
+    bookingType: "clinical",
+    shortDesc: "Advanced skin rejuvenation therapies including Skin Boosters, Polynucleotides, Profhilo, Microneedling, PRP therapy, and PDO thread lifts delivered by certified practitioners.",
+    fullDesc: "Advanced skin rejuvenation therapies including Skin Boosters, Polynucleotides, Profhilo, Microneedling, PRP therapy, and PDO thread lifts delivered by certified practitioners. We utilize medical-grade techniques to restore skin elasticity, hydration, structure, and cellular vitality.",
+    image: "/images/services/skin-treatments.jpg",
+    startingPrice: "From £150",
+    treatments: [
+      { name: "Skin Boosters", duration: "45 mins", price: "£150", description: "Deep dermal hydration and radiance enhancement using micro-droplet moisture formulas." },
+      { name: "Polynucleotides", duration: "45 mins", price: "£200", description: "Regenerative biostimulator therapy for cellular repair, under-eye brightening and texture." },
+      { name: "Profhilo", duration: "45 mins", price: "£399", description: "Ultra-pure hyaluronic acid bio-remodelling treatment for intense skin laxity and firmness." },
+      { name: "Microneedling - Full Face", duration: "60 mins", price: "£150", description: "Collagen induction therapy for scarring, pore reduction, and overall rejuvenation." },
+      { name: "Microneedling - Face & Neck", duration: "75 mins", price: "£200", description: "Comprehensive collagen induction covering both face and neck contours." },
+      { name: "PRP (Platelet-Rich Plasma) - Face or Hair", duration: "60 mins", price: "£150", description: "Autologous vampire therapy for natural cellular skin glow or hair follicle rejuvenation." },
+      { name: "PDO Thread Lift - Full Face", duration: "90 mins", price: "£1,200", description: "Non-surgical lifting and collagen stimulation with dissolvable PDO threads." },
+    ],
+  },
+  {
+    id: "service-aesthetics",
+    slug: "aesthetics-injectables",
+    title: "Aesthetics / Injectables",
+    category: "Aesthetics / Injectables",
+    bookingType: "clinical",
+    shortDesc: "Expert aesthetics and injectable treatments including premium dermal fillers and fat-dissolving injections. Led by practitioners with over 15 years of clinical expertise.",
+    fullDesc: "Expert aesthetics and injectable treatments including premium dermal fillers and fat-dissolving injections. Led by practitioners with over 15 years of clinical expertise, our clinic delivers natural, refined enhancements in a safe, clinical environment.",
+    image: "/images/services/aesthetics.jpg",
+    startingPrice: "From £100",
+    treatments: [
+      { name: "Lip Filler (1ml)", duration: "45 mins", price: "£150", description: "Premium hyaluronic acid dermal filler for natural lip volume and definition." },
+      { name: "Chin Fillers", duration: "45 mins", price: "£150", description: "Chin contouring and profile balancing using high-density dermal filler." },
+      { name: "Hand Fillers", duration: "45 mins", price: "£200", description: "Rejuvenating dermal filler to restore lost volume and smooth hand contours." },
+      { name: "Nasolabial Folds Filler", duration: "45 mins", price: "£200", description: "Smoothing smile lines and smile creases for a refreshed, youthful look." },
+      { name: "Cheek Fillers", duration: "45-60 mins", price: "£300", description: "Midface volume restoration and cheekbone definition." },
+      { name: "Fat-Dissolving Injections - Small Areas", duration: "30-45 mins", price: "£100", description: "Targeted lipolysis for localized stubborn fat deposits (e.g. chin)." },
+      { name: "Fat-Dissolving Injections - Large Areas", duration: "45-60 mins", price: "£150", description: "Lipolytic solution for larger body areas (e.g. stomach, flanks, thighs)." },
+      { name: "Free Aesthetics Consultation", duration: "20 mins", price: "Free", description: "In-depth facial assessment and personalized treatment plan." },
+    ],
+  },
+  {
+    id: "service-hair",
     slug: "hair",
     title: "Hair",
-    category: "Hair Styling & Colour",
+    category: "Hair",
     bookingType: "salon",
-    shortDesc: "Our experienced hair professionals provide a full range of cutting, colouring, styling, and hair care services tailored to your individual look and lifestyle. Using high-quality products and the latest techniques, we create beautiful, healthy, and manageable results. Whether you're looking for a fresh new style, colour transformation, or routine maintenance, our team is dedicated to helping you look and feel your best.",
+    shortDesc: "Our experienced hair professionals provide a full range of cutting, colouring, styling, and hair care services tailored to your individual look and lifestyle. Using high-quality products and the latest techniques, we create beautiful, healthy, and manageable results.",
     fullDesc: "Our experienced hair professionals provide a full range of cutting, colouring, styling, and hair care services tailored to your individual look and lifestyle. Using high-quality products and the latest techniques, we create beautiful, healthy, and manageable results. Whether you're looking for a fresh new style, colour transformation, or routine maintenance, our team is dedicated to helping you look and feel your best.",
     image: "/images/services/hair-styling.webp",
+    startingPrice: "From £35",
     treatments: [
-      { name: "Cut, Wash & Blowdry", duration: "45-60 mins", price: "Starting from £35" },
-      { name: "Balayage & Full Highlights", duration: "2-3 hrs", price: "Price on consultation" },
-      { name: "Hair Colouring & Gloss", duration: "60-90 mins", price: "Starting from £50" },
-      { name: "Keratin Hair Smoothing Treatment", duration: "2-3 hrs", price: "Price on consultation" },
+      { name: "Cut, Wash & Blowdry", duration: "45-60 mins", price: "Starting from £35", description: "Precision haircut with nourishing wash and signature blowout." },
+      { name: "Balayage & Full Highlights", duration: "2-3 hrs", price: "Price on consultation", description: "Custom hand-painted colour blend or full multidimensional foils." },
+      { name: "Hair Colouring & Gloss", duration: "60-90 mins", price: "Starting from £50", description: "Root tint, global colour or high-shine tonal glaze." },
+      { name: "Keratin Hair Smoothing Treatment", duration: "2-3 hrs", price: "Price on consultation", description: "Frizz-eliminating smoothing treatment for silky, manageable hair." },
+      { name: "Kérastase Fusio-Dose Bespoke Ritual", duration: "20-30 mins", price: "Price on consultation", description: "Instant in-salon hair transformation tailored to your hair fibre." },
     ],
   },
   {
-    id: "service-3",
-    slug: "aesthetics",
-    title: "AESTHETICS",
-    category: "Advanced Aesthetics",
-    bookingType: "clinical",
-    shortDesc: "Our aesthetics team is led by highly experienced practitioners with more than 15 years of expertise in advanced treatments. Combining professional knowledge with the latest technologies and industry-leading techniques, we deliver safe and effective results. As the exclusive provider of SkinCeuticals in Hounslow, we offer premium solutions for healthier, younger-looking skin.",
-    fullDesc: "Our aesthetics team is led by highly experienced practitioners with more than 15 years of expertise in advanced treatments. Combining professional knowledge with the latest technologies and industry-leading techniques, we deliver safe and effective results. As the exclusive provider of SkinCeuticals in Hounslow, we offer premium solutions for healthier, younger-looking skin.",
-    image: "/images/services/aesthetics.jpg",
+    id: "service-beauty",
+    slug: "beauty-makeup",
+    title: "Beauty & Makeup",
+    category: "Beauty & Makeup",
+    bookingType: "salon",
+    shortDesc: "Our VTCT-certified beauty therapists have over 10 years of industry experience, providing professional skincare, makeup artistry, threading, and waxing treatments. Using advanced techniques and premium products, we create personalised experiences tailored to your individual needs.",
+    fullDesc: "Our VTCT-certified beauty therapists have over 10 years of industry experience, providing professional skincare, makeup artistry, threading, and waxing treatments. Using advanced techniques and premium products, we create personalised experiences tailored to your individual needs. Our goal is to enhance your natural beauty while helping you feel confident, refreshed, and radiant.",
+    image: "/images/services/beauty-makeup.jpg",
+    startingPrice: "From £10",
     treatments: [
-      { name: "SkinCeuticals Clinical Peels", duration: "45 mins", price: "Price on consultation" },
-      { name: "Radio Frequency Skin Tightening", duration: "45-60 mins", price: "Price on consultation" },
-      { name: "Lynton Laser Skin Treatments", duration: "30-60 mins", price: "Price on consultation" },
-      { name: "Free Aesthetics Consultation", duration: "20 mins", price: "Free" },
+      { name: "Eyebrow Threading & Tinting", duration: "15-30 mins", price: "Starting from £10", description: "Expert brow shaping and long-lasting tinting." },
+      { name: "Waxing Services (Full Body / Targeted)", duration: "15-45 mins", price: "Starting from £15", description: "Smooth, gentle waxing using premium warm/hot wax." },
+      { name: "Party & Special Occasion Makeup", duration: "45-60 mins", price: "Price on consultation", description: "Flawless glam makeup application tailored to your event." },
+      { name: "Bridal Makeup Artistry", duration: "60-90 mins", price: "Price on consultation", description: "Signature bridal artistry with high-end luxury cosmetics." },
     ],
   },
   {
-    id: "service-4",
-    slug: "complete-body-wellness-care",
-    title: "Complete Body & Wellness Care",
+    id: "service-wellness",
+    slug: "body-wellness",
+    title: "Body & Wellness",
     category: "Body & Wellness",
     bookingType: "salon",
-    shortDesc: "Our body and wellness specialists combine expert care with advanced treatments to support your overall wellbeing. Using modern techniques and a personalised approach, we help you achieve your beauty and wellness goals while promoting relaxation, rejuvenation, and self-confidence. From body contouring to restorative therapies, our treatments are designed to enhance balance, vitality, and long-term wellbeing.",
+    shortDesc: "Our body and wellness specialists combine expert care with advanced treatments to support your overall wellbeing. Using modern techniques and a personalised approach, we help you achieve your beauty and wellness goals while promoting relaxation, rejuvenation, and self-confidence.",
     fullDesc: "Our body and wellness specialists combine expert care with advanced treatments to support your overall wellbeing. Using modern techniques and a personalised approach, we help you achieve your beauty and wellness goals while promoting relaxation, rejuvenation, and self-confidence. From body contouring to restorative therapies, our treatments are designed to enhance balance, vitality, and long-term wellbeing.",
     image: "/images/services/body-wellness.jpg",
+    startingPrice: "From £45",
     treatments: [
-      { name: "Body Contouring Treatments", duration: "60 mins", price: "Price on consultation" },
-      { name: "Relaxation & Therapeutic Body Care", duration: "45-60 mins", price: "Starting from £45" },
-      { name: "Rejuvenating Body Rituals", duration: "60 mins", price: "Price on consultation" },
+      { name: "Body Contouring & Tightening", duration: "60 mins", price: "Price on consultation", description: "Non-invasive body sculpting and skin firming sessions." },
+      { name: "Relaxation & Therapeutic Body Care", duration: "45-60 mins", price: "Starting from £45", description: "Stress-relieving therapeutic massage and tension release." },
+      { name: "Rejuvenating Body Rituals", duration: "60 mins", price: "Price on consultation", description: "Full body exfoliation and nourishing deep moisture wraps." },
     ],
   },
 ];
@@ -318,11 +390,16 @@ export const FAQS = [
     answer: "Yes. We offer private, respectful salon spaces ensuring complete comfort and privacy for our clients during their treatments.",
   },
   {
+    question: "Do you offer Laser Hair Removal?",
+    answer: "Yes. We provide medical-grade laser hair removal for all areas. A patch test and consultation are completed before your course.",
+  },
+  {
     question: "Do you accept walk-in appointments?",
-    answer: "Yes, walk-ins are accepted based on specialist availability. However, to guarantee your preferred time slot and stylist or aesthetician, we recommend booking in advance.",
+    answer: "Yes, walk-ins are accepted based on specialist availability. However, to guarantee your preferred time slot and stylist or aesthetician, we recommend booking in advance via Fresha or by calling the salon.",
   },
   {
     question: "Where can I find Glam & Go Training Academy courses?",
-    answer: "Our Training Academy now has its own dedicated website. Please visit https://glamandgoacademy.com/ or click 'Academy' in our navigation to view course information and enrol.",
+    answer: "Our Training Academy has its own dedicated website. Please visit https://glamandgoacademy.com/ or click 'Academy' in our navigation to view course information and enrol.",
   },
 ];
+

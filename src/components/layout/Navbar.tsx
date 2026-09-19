@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ExternalLink, Calendar } from "lucide-react";
+import { Menu, X, ExternalLink, Calendar, Sparkles } from "lucide-react";
 import { SITE_INFO } from "@/data/siteContent";
 
 const navLinks = [
@@ -14,8 +14,9 @@ const navLinks = [
     href: SITE_INFO.academyUrl,
     isExternal: true,
   },
-  { label: "About Us", href: "/about" },
+  { label: "Laser Hair Removal", href: "/laser-hair-removal", highlight: true },
   { label: "Our Services", href: "/services" },
+  { label: "About Us", href: "/about" },
   { label: "FAQ's", href: "/faqs" },
   { label: "Contact Us", href: "/contact" },
 ];
@@ -62,7 +63,7 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-7">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
 
@@ -88,10 +89,15 @@ export default function Navbar() {
                   className={`relative text-sm font-medium tracking-wide transition-colors py-1 ${
                     isActive
                       ? "text-gold-400 font-semibold"
+                      : link.highlight
+                      ? "text-gold-300 font-medium hover:text-gold-200"
                       : "text-zinc-200 hover:text-gold-400"
                   }`}
                 >
-                  {link.label}
+                  <span className="flex items-center gap-1">
+                    {link.highlight && <Sparkles className="w-3 h-3 text-gold-400" />}
+                    <span>{link.label}</span>
+                  </span>
                   {isActive && (
                     <span className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-gold-400 to-gold-600 rounded-full" />
                   )}
@@ -133,7 +139,7 @@ export default function Navbar() {
 
       {/* Mobile Slide-down Drawer */}
       {isOpen && (
-        <div className="lg:hidden fixed inset-x-0 top-[73px] bg-noir-950/98 backdrop-blur-xl border-b border-gold-500/20 px-6 py-6 space-y-4 shadow-2xl transition-all">
+        <div className="lg:hidden fixed inset-x-0 top-[73px] bg-noir-950/98 backdrop-blur-xl border-b border-gold-500/20 px-6 py-6 space-y-4 shadow-2xl transition-all max-h-[calc(100vh-80px)] overflow-y-auto">
           <div className="flex flex-col space-y-3">
             {navLinks.map((link) => {
               const isActive = pathname === link.href;
@@ -145,7 +151,7 @@ export default function Navbar() {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between py-2 text-base font-medium text-gold-400 hover:text-gold-300 border-b border-white/5"
+                    className="flex items-center justify-between py-2.5 text-base font-medium text-gold-400 hover:text-gold-300 border-b border-white/5"
                   >
                     <span>{link.label}</span>
                     <ExternalLink className="w-4 h-4 opacity-70" />
@@ -157,11 +163,14 @@ export default function Navbar() {
                 <Link
                   key={link.label}
                   href={link.href}
-                  className={`flex items-center justify-between py-2 text-base font-medium border-b border-white/5 transition-colors ${
+                  className={`flex items-center justify-between py-2.5 text-base font-medium border-b border-white/5 transition-colors ${
                     isActive ? "text-gold-400 font-semibold" : "text-zinc-200 hover:text-gold-400"
                   }`}
                 >
-                  <span>{link.label}</span>
+                  <span className="flex items-center gap-2">
+                    {link.highlight && <Sparkles className="w-3.5 h-3.5 text-gold-400" />}
+                    <span>{link.label}</span>
+                  </span>
                   {isActive && <span className="w-1.5 h-1.5 rounded-full bg-gold-400" />}
                 </Link>
               );

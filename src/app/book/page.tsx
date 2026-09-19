@@ -11,6 +11,8 @@ import {
   Scissors,
   ExternalLink,
   Phone,
+  Sparkles,
+  ShieldCheck,
 } from "lucide-react";
 import { SERVICES, SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 
@@ -45,30 +47,26 @@ function BookingContent() {
     }
   }, [searchParams]);
 
-  const serviceOptions =
+  // Dynamically generate all verified services for selection based on category
+  const clinicalServices = SERVICES.filter((s) => s.bookingType === "clinical").flatMap((s) =>
+    (s.treatments || []).map((t) => `${s.title}: ${t.name} (${t.price || "Enquire"})`)
+  );
+
+  const salonServices = SERVICES.filter((s) => s.bookingType === "salon").flatMap((s) =>
+    (s.treatments || []).map((t) => `${s.title}: ${t.name} (${t.price || "Enquire"})`)
+  );
+
+  const serviceOptions = bookingType === "clinical" ? clinicalServices : salonServices;
+
+  const directExternalBookingUrl =
     bookingType === "clinical"
-      ? [
-          "AESTHETICS - SkinCeuticals Clinical Peel",
-          "AESTHETICS - Lynton Laser Skin Treatments",
-          "AESTHETICS - Radio Frequency Skin Tightening",
-          "AESTHETICS - Free Aesthetics Consultation",
-        ]
-      : [
-          "BEAUTY & MAKEUP - Professional Skincare & Facials",
-          "BEAUTY & MAKEUP - Makeup Artistry (Party & Bridal)",
-          "BEAUTY & MAKEUP - Eyebrow Threading & Tinting",
-          "BEAUTY & MAKEUP - Waxing Services",
-          "Hair - Cut, Wash & Blowdry",
-          "Hair - Balayage & Full Highlights",
-          "Hair - Hair Colouring & Gloss",
-          "Hair - Keratin Hair Smoothing Treatment",
-          "Complete Body & Wellness Care",
-        ];
+      ? BOOKING_LINKS.clinicalPhorest
+      : BOOKING_LINKS.salonFresha;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!selectedService) {
-      alert("Please select a service.");
+      alert("Please select a treatment.");
       return;
     }
 
@@ -105,13 +103,13 @@ function BookingContent() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 space-y-3">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold-600">
-            Appointments
+            Appointments &amp; Consultations
           </span>
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-noir-950">
             Book Your Appointment
           </h1>
           <p className="text-sm text-zinc-600 max-w-lg mx-auto">
-            Book salon services or request a clinical aesthetic consultation.
+            Book salon services, laser treatments, or request a clinical aesthetic consultation in Hounslow.
           </p>
         </div>
 
@@ -145,7 +143,7 @@ function BookingContent() {
                   bookingType === "clinical" ? "text-zinc-400" : "text-zinc-500"
                 }`}
               >
-                Aesthetics (Phorest Ready)
+                Aesthetics, Peels, Skin
               </div>
             </div>
           </button>
@@ -172,30 +170,36 @@ function BookingContent() {
               <Scissors className="w-5 h-5" />
             </div>
             <div>
-              <div className="text-sm font-serif font-bold">Salon Services</div>
+              <div className="text-sm font-serif font-bold">Salon &amp; Laser</div>
               <div
                 className={`text-xs ${
                   bookingType === "salon" ? "text-zinc-400" : "text-zinc-500"
                 }`}
               >
-                Hair &amp; Beauty (Fresha Ready)
+                Laser, Hair, Beauty, Body
               </div>
             </div>
           </button>
         </div>
 
-        {/* External Platform Direct Booking Link Bar */}
-        <div className="mb-8 p-4 bg-white rounded-2xl border border-zinc-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-xs text-zinc-600 text-center sm:text-left">
-            Prefer direct online booking via {bookingType === "clinical" ? "Phorest" : "Fresha"}?
+        {/* Direct Verified Booking Route CTA Banner */}
+        <div className="mb-8 p-5 bg-noir-950 text-white rounded-2xl border border-gold-500/40 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-luxury">
+          <div className="space-y-1 text-center sm:text-left">
+            <div className="text-xs font-semibold uppercase tracking-wider text-gold-400 flex items-center justify-center sm:justify-start gap-1.5">
+              <Sparkles className="w-3.5 h-3.5" />
+              <span>Instant Online Booking</span>
+            </div>
+            <p className="text-xs text-zinc-300">
+              Book directly via our verified {bookingType === "clinical" ? "Phorest Clinic" : "Fresha"} portal for live slot availability.
+            </p>
           </div>
           <a
-            href={bookingType === "clinical" ? BOOKING_LINKS.clinicalPhorest : BOOKING_LINKS.salonFresha}
+            href={directExternalBookingUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-4 py-2 rounded-full text-xs font-semibold bg-zinc-100 hover:bg-gold-500 hover:text-white transition-colors flex items-center gap-1.5"
+            className="shrink-0 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-300 hover:to-gold-400 text-noir-950 transition-all flex items-center gap-1.5 shadow-sm"
           >
-            <span>Book via {bookingType === "clinical" ? "Phorest Portal" : "Fresha Portal"}</span>
+            <span>Open {bookingType === "clinical" ? "Phorest" : "Fresha"} Portal</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>
@@ -211,7 +215,7 @@ function BookingContent() {
               <p className="text-sm text-zinc-600 max-w-md mx-auto">{responseMsg}</p>
               <div className="p-4 bg-cream-50 rounded-2xl border border-zinc-200 text-xs text-zinc-700 max-w-md mx-auto text-left space-y-1">
                 <div>
-                  <strong>Service:</strong> {selectedService}
+                  <strong>Treatment:</strong> {selectedService}
                 </div>
                 <div>
                   <strong>Date:</strong> {formData.preferredDate} at {formData.preferredTime}
@@ -240,7 +244,7 @@ function BookingContent() {
               {/* Service Selection */}
               <div>
                 <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-2">
-                  Select {bookingType === "clinical" ? "Clinical Treatment" : "Salon Service"} *
+                  Select {bookingType === "clinical" ? "Clinical Treatment" : "Salon / Laser Treatment"} *
                 </label>
                 <select
                   required
@@ -248,7 +252,7 @@ function BookingContent() {
                   onChange={(e) => setSelectedService(e.target.value)}
                   className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                 >
-                  <option value="">-- Select treatment --</option>
+                  <option value="">-- Choose from our verified service menu --</option>
                   {serviceOptions.map((opt, i) => (
                     <option key={i} value={opt}>
                       {opt}
@@ -257,10 +261,10 @@ function BookingContent() {
                 </select>
               </div>
 
-              {/* Personal Details */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Name & Phone */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-2">
                     Full Name *
                   </label>
                   <input
@@ -268,25 +272,13 @@ function BookingContent() {
                     required
                     value={formData.clientName}
                     onChange={(e) => setFormData({ ...formData, clientName: e.target.value })}
-                    placeholder="Your name"
+                    placeholder="Your Full Name"
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   />
                 </div>
+
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                    Email Address *
-                  </label>
-                  <input
-                    type="email"
-                    required
-                    value={formData.clientEmail}
-                    onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
-                    placeholder="Your email"
-                    className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-2">
                     Phone Number *
                   </label>
                   <input
@@ -294,16 +286,31 @@ function BookingContent() {
                     required
                     value={formData.clientPhone}
                     onChange={(e) => setFormData({ ...formData, clientPhone: e.target.value })}
-                    placeholder="+44..."
+                    placeholder="e.g. +44 7440 591153"
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   />
                 </div>
               </div>
 
-              {/* Date, Time, Specialist */}
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              {/* Email */}
+              <div>
+                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-2">
+                  Email Address *
+                </label>
+                <input
+                  type="email"
+                  required
+                  value={formData.clientEmail}
+                  onChange={(e) => setFormData({ ...formData, clientEmail: e.target.value })}
+                  placeholder="name@example.com"
+                  className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
+                />
+              </div>
+
+              {/* Date & Time */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-2">
                     Preferred Date *
                   </label>
                   <input
@@ -314,70 +321,63 @@ function BookingContent() {
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   />
                 </div>
+
                 <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                    Preferred Time *
+                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-2">
+                    Preferred Time Slot
                   </label>
                   <select
                     value={formData.preferredTime}
                     onChange={(e) => setFormData({ ...formData, preferredTime: e.target.value })}
                     className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
                   >
-                    <option value="10:00 AM">10:00 AM</option>
-                    <option value="11:00 AM">11:00 AM</option>
-                    <option value="12:00 PM">12:00 PM</option>
-                    <option value="1:00 PM">1:00 PM</option>
-                    <option value="2:00 PM">2:00 PM</option>
-                    <option value="3:00 PM">3:00 PM</option>
-                    <option value="4:00 PM">4:00 PM</option>
-                    <option value="5:00 PM">5:00 PM</option>
+                    <option value="Morning (9:30 AM - 12:00 PM)">Morning (9:30 AM - 12:00 PM)</option>
+                    <option value="Early Afternoon (12:00 PM - 2:30 PM)">Early Afternoon (12:00 PM - 2:30 PM)</option>
+                    <option value="Late Afternoon (2:30 PM - 5:00 PM)">Late Afternoon (2:30 PM - 5:00 PM)</option>
+                    <option value="Evening (5:00 PM - 6:30 PM)">Evening (5:00 PM - 6:30 PM)</option>
                   </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                    Specialist (Optional)
-                  </label>
-                  <input
-                    type="text"
-                    value={formData.practitionerPreference}
-                    onChange={(e) =>
-                      setFormData({ ...formData, practitionerPreference: e.target.value })
-                    }
-                    placeholder="Any Specialist"
-                    className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white"
-                  />
                 </div>
               </div>
 
               {/* Notes */}
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-1.5">
-                  Notes
+                <label className="block text-xs font-semibold uppercase tracking-wider text-zinc-700 mb-2">
+                  Special Notes / Skin Consultation Details
                 </label>
                 <textarea
                   rows={3}
                   value={formData.notes}
                   onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
-                  placeholder="Any specific requests or requirements..."
+                  placeholder="Any specific preferences, allergies, or questions..."
                   className="w-full bg-cream-50 border border-zinc-300 rounded-xl py-3 px-4 text-sm text-noir-950 focus:outline-none focus:border-gold-500 focus:bg-white resize-none"
                 />
               </div>
 
               {status === "error" && (
-                <div className="p-3 bg-rose-50 text-rose-700 text-xs rounded-xl flex items-center gap-2 border border-rose-200">
-                  <AlertCircle className="w-4 h-4 flex-shrink-0" />
+                <div className="p-4 bg-rose-50 border border-rose-200 rounded-xl text-xs text-rose-700 flex items-center gap-2">
+                  <AlertCircle className="w-4 h-4 shrink-0" />
                   <span>{responseMsg}</span>
                 </div>
               )}
 
+              {/* Submit CTA */}
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
+                className="w-full py-4 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all duration-300 disabled:opacity-50"
               >
-                <Calendar className="w-4 h-4" />
-                <span>{status === "loading" ? "Submitting..." : "Submit Appointment Request"}</span>
+                {status === "loading" ? "Submitting Request..." : "Request Appointment"}
               </button>
+
+              <div className="text-center text-xs text-zinc-500 pt-2 flex items-center justify-center gap-1">
+                <span>Prefer to speak directly?</span>
+                <a
+                  href={`tel:${SITE_INFO.phonePrimaryClean}`}
+                  className="text-gold-700 font-semibold hover:underline"
+                >
+                  Call {SITE_INFO.phonePrimary}
+                </a>
+              </div>
             </form>
           )}
         </div>
@@ -386,9 +386,9 @@ function BookingContent() {
   );
 }
 
-export default function BookPage() {
+export default function BookingPage() {
   return (
-    <Suspense fallback={<div className="py-20 text-center">Loading Booking...</div>}>
+    <Suspense fallback={<div className="py-20 text-center text-sm text-zinc-500">Loading booking portal...</div>}>
       <BookingContent />
     </Suspense>
   );
