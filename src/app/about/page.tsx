@@ -80,7 +80,7 @@ export default function AboutPage() {
             <div className="lg:col-span-6 space-y-6">
               <div className="relative h-[400px] sm:h-[460px] rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
                 <Image
-                  src="/images/salon/treatment-suite.jpg"
+                  src="/images/salon/salon-atmosphere.jpg"
                   alt="Glam & Go Salon Atmosphere"
                   fill
                   className="object-cover"

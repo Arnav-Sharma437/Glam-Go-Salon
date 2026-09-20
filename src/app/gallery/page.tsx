@@ -12,7 +12,7 @@ const allGalleryPhotos = [
   { id: "gal-7", image: "/images/salon/salon-interior-main.jpg", title: "Flagship Salon Floor", category: "Salon Space" },
   { id: "gal-8", image: "/images/salon/salon-atmosphere.jpg", title: "Consultation & Aesthetics Area", category: "Clinic Interior" },
   { id: "gal-9", image: "/images/services/hair-styling.webp", title: "Styling Artistry in Motion", category: "Hair Artistry" },
-  { id: "gal-10", image: "/images/salon/treatment-suite.jpg", title: "Private Treatment Suite", category: "Aesthetics" },
+  { id: "gal-10", image: "/images/salon/salon-suite-1.webp", title: "Private Treatment Suite", category: "Aesthetics" },
   { id: "gal-11", image: "/images/services/beauty-makeup.jpg", title: "Signature Glow Facials", category: "Beauty & Glow" },
   { id: "gal-12", image: "/images/services/body-wellness.jpg", title: "Wellness Care Suite", category: "Salon Space" },
 ];

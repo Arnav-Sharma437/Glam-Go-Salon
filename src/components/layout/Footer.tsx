@@ -218,6 +218,15 @@ export default function Footer() {
                 </a>
               </div>
               <div className="flex items-center gap-3">
+                <Phone className="w-4 h-4 text-gold-400 flex-shrink-0" />
+                <a
+                  href={`tel:${SITE_INFO.phoneAcademyClean}`}
+                  className="text-xs hover:text-gold-400 transition-colors"
+                >
+                  Academy: {SITE_INFO.phoneAcademy}
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-gold-400 flex-shrink-0" />
                 <a
                   href={`mailto:${SITE_INFO.email}`}

@@ -155,18 +155,43 @@ export default function ContactPage() {
                     <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <h3 className="text-sm font-semibold text-noir-950">Phone Numbers</h3>
+                    <h3 className="text-sm font-semibold text-noir-950">Salon Phone Numbers</h3>
                     <div className="mt-1 space-y-1 text-xs sm:text-sm">
                       <div>
                         <a href={`tel:${SITE_INFO.phonePrimaryClean}`} className="text-gold-600 hover:underline">
-                          {SITE_INFO.phonePrimary}
+                          {SITE_INFO.phonePrimary} (Primary)
                         </a>
                       </div>
                       <div>
                         <a href={`tel:${SITE_INFO.phoneSecondaryClean}`} className="text-gold-600 hover:underline">
-                          {SITE_INFO.phoneSecondary}
+                          {SITE_INFO.phoneSecondary} (Secondary)
                         </a>
                       </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Academy Contact Card */}
+                <div className="p-6 bg-gold-50/50 rounded-2xl border border-gold-200/80 shadow-sm flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gold-500 text-noir-950 flex items-center justify-center flex-shrink-0">
+                    <Phone className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h3 className="text-sm font-semibold text-noir-950">Glam &amp; Go Academy</h3>
+                    <div className="mt-1 space-y-1 text-xs sm:text-sm">
+                      <div>
+                        <a href={`tel:${SITE_INFO.phoneAcademyClean}`} className="text-gold-700 font-medium hover:underline">
+                          {SITE_INFO.phoneAcademy}
+                        </a>
+                      </div>
+                      <a
+                        href={SITE_INFO.academyUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-xs text-gold-700 hover:underline mt-1 inline-block font-semibold"
+                      >
+                        Visit Training Academy Website →
+                      </a>
                     </div>
                   </div>
                 </div>
