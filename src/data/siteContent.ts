@@ -158,7 +158,6 @@ export const SERVICES: ServiceItem[] = [
       { name: "Microneedling – Full Face", duration: "60 mins", price: "From £150", description: "Full face collagen induction therapy." },
       { name: "Microneedling – Full Face & Neck", duration: "75 mins", price: "From £200", description: "Collagen induction covering face and neck." },
       { name: "Microneedling with Exosomes", duration: "60 mins", price: "From £200", description: "Advanced microneedling infused with regenerative exosomes." },
-      { name: "Professional Skincare & Custom Facial", duration: "45-60 mins", description: "Facial treatment tailored to your skin type and hydration needs." },
     ],
   },
   {
