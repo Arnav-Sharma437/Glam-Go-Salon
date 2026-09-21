@@ -37,9 +37,11 @@ export default function BrandsSection() {
                 <h3 className="text-base font-serif font-semibold text-gold-400">
                   {brand.name}
                 </h3>
-                <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
-                  {brand.subtitle}
-                </p>
+                {brand.subtitle && (
+                  <p className="text-xs text-zinc-400 mt-1 leading-relaxed">
+                    {brand.subtitle}
+                  </p>
+                )}
               </div>
             </div>
           ))}

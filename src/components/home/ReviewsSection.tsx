@@ -19,7 +19,7 @@ export default function ReviewsSection() {
           <div>
             <SectionHeading
               eyebrow="What Our Clients Say"
-              title="Verified Customer Reviews"
+              title="What Our Clients Say About Us"
               align="left"
               className="mb-0"
             />

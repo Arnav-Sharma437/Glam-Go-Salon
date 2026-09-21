@@ -333,8 +333,8 @@ export const WHY_CHOOSE_US: WhyUsItem[] = [
     iconName: "Award",
   },
   {
-    title: "Medical-Grade Equipment",
-    description: "We invest in advanced technology, including Lynton and Radio Frequency machines for safe, high-quality results.",
+    title: "Advanced Treatment Technology",
+    description: "We invest in advanced treatment technology, including Lynton and Radio Frequency equipment, to support high-quality professional treatments.",
     iconName: "Sparkles",
   },
   {
@@ -424,7 +424,7 @@ export const REVIEWS: ReviewItem[] = [
 // Product brands exactly as on live site
 export const BRANDS = [
   { name: "Kérastase", logo: "/images/brands/kerastase.png", subtitle: "Hair Care" },
-  { name: "SkinCeuticals", logo: "/images/brands/skinceuticals.png", subtitle: "Exclusive Provider in Hounslow" },
+  { name: "SkinCeuticals", logo: "/images/brands/skinceuticals.png", subtitle: "" },
   { name: "Olaplex", logo: "/images/brands/olaplex.png", subtitle: "Hair Repair" },
   { name: "L'Oréal", logo: "/images/brands/loreal.png", subtitle: "Hair Colour & Care" },
 ];
