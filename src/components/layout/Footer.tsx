@@ -246,20 +246,20 @@ export default function Footer() {
             <div className="pt-2">
               <div className="flex items-center gap-3">
                 <a
-                  href="https://instagram.com"
+                  href={SITE_INFO.instagramUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram"
-                  className="w-8 h-8 rounded-full bg-noir-900 border border-white/15 flex items-center justify-center text-zinc-300 hover:text-gold-400 hover:border-gold-500 transition-all"
+                  aria-label="Instagram @glamandgolondon"
+                  className="w-9 h-9 rounded-full bg-noir-900 border border-white/15 flex items-center justify-center text-zinc-300 hover:text-gold-400 hover:border-gold-500 transition-all shadow-sm"
                 >
                   <Instagram className="w-4 h-4" />
                 </a>
                 <a
-                  href="https://facebook.com"
+                  href={SITE_INFO.facebookUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Facebook"
-                  className="w-8 h-8 rounded-full bg-noir-900 border border-white/15 flex items-center justify-center text-zinc-300 hover:text-gold-400 hover:border-gold-500 transition-all"
+                  aria-label="Facebook @glamandgolondon"
+                  className="w-9 h-9 rounded-full bg-noir-900 border border-white/15 flex items-center justify-center text-zinc-300 hover:text-gold-400 hover:border-gold-500 transition-all shadow-sm"
                 >
                   <Facebook className="w-4 h-4" />
                 </a>

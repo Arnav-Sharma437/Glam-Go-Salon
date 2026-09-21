@@ -13,6 +13,8 @@ import {
   MessageCircle,
   Navigation,
   Calendar,
+  Instagram,
+  Facebook,
 } from "lucide-react";
 import { SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 
@@ -229,6 +231,36 @@ export default function ContactPage() {
                     <p className="text-xs sm:text-sm text-zinc-600 mt-1 leading-relaxed">
                       {SITE_INFO.openingHours}
                     </p>
+                  </div>
+                </div>
+
+                {/* Social Media Card */}
+                <div className="p-6 bg-white rounded-2xl border border-zinc-200/80 shadow-sm flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-xl bg-gold-500/10 text-gold-600 flex items-center justify-center flex-shrink-0">
+                    <Instagram className="w-5 h-5" />
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-sm font-semibold text-noir-950">Follow Us</h3>
+                    <div className="flex items-center gap-3 pt-0.5">
+                      <a
+                        href={SITE_INFO.instagramUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-cream-50 text-noir-950 hover:bg-gold-500 hover:text-noir-950 border border-zinc-200 transition-colors"
+                      >
+                        <Instagram className="w-3.5 h-3.5 text-pink-600" />
+                        <span>Instagram</span>
+                      </a>
+                      <a
+                        href={SITE_INFO.facebookUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-cream-50 text-noir-950 hover:bg-gold-500 hover:text-noir-950 border border-zinc-200 transition-colors"
+                      >
+                        <Facebook className="w-3.5 h-3.5 text-blue-600" />
+                        <span>Facebook</span>
+                      </a>
+                    </div>
                   </div>
                 </div>
               </div>

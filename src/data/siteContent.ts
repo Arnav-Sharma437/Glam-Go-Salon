@@ -67,6 +67,8 @@ export const SITE_INFO = {
   phoneAcademyClean: "+442039180949",
   whatsAppUrl: "https://wa.me/447440591153",
   email: "glamandgohounslow@gmail.com",
+  instagramUrl: "https://www.instagram.com/glamandgolondon",
+  facebookUrl: "https://www.facebook.com/glamandgolondon",
   openingHours: "Mon - Sat: 9:00 AM - 8:00 PM | Sun: 10:00 AM - 7:00 PM",
   hiringNotice: "We’re Hiring: Salon Manager — Join Glam & Go Beauty Salon Today",
   academyUrl: "https://glamandgoacademy.com/",
