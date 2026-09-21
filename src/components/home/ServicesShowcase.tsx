@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Sparkles, Pause, Play } from "lucide-react";
-import { SERVICES } from "@/data/siteContent";
+import { SERVICES, BOOKING_LINKS } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 export default function ServicesShowcase() {
@@ -103,12 +103,14 @@ export default function ServicesShowcase() {
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                       </Link>
 
-                      <Link
-                        href={`/book?type=${service.bookingType}&service=${encodeURIComponent(service.title)}`}
+                      <a
+                        href={BOOKING_LINKS.salonFresha}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="px-4 py-2 rounded-full text-xs font-semibold bg-noir-950 text-white hover:bg-gold-500 hover:text-noir-950 transition-colors"
                       >
                         Book Now
-                      </Link>
+                      </a>
                     </div>
                   </div>
                 </div>

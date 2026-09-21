@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Sparkles, Calendar } from "lucide-react";
-import { GALLERY_ITEMS } from "@/data/siteContent";
+import { GALLERY_ITEMS, BOOKING_LINKS } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 
 const allGalleryPhotos = [
@@ -88,13 +88,15 @@ export default function GalleryPage() {
 
           {/* Book CTA */}
           <div className="mt-16 text-center">
-            <Link
-              href="/book"
+            <a
+              href={BOOKING_LINKS.salonFresha}
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Your Transformation</span>
-            </Link>
+            </a>
           </div>
         </div>
       </section>

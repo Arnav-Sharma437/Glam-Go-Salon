@@ -14,7 +14,7 @@ import {
   AlertCircle,
   ExternalLink,
 } from "lucide-react";
-import { SITE_INFO, SERVICES, ABOUT_CONTENT } from "@/data/siteContent";
+import { SITE_INFO, SERVICES, ABOUT_CONTENT, BOOKING_LINKS } from "@/data/siteContent";
 
 export default function Footer() {
   const [email, setEmail] = useState("");
@@ -182,9 +182,14 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/book" className="hover:text-gold-400 transition-colors font-medium text-gold-400">
+                <a
+                  href={BOOKING_LINKS.salonFresha}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-gold-400 transition-colors font-medium text-gold-400"
+                >
                   Book Now
-                </Link>
+                </a>
               </li>
             </ul>
           </div>

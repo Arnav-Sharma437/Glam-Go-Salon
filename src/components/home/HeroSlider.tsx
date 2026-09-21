@@ -93,18 +93,41 @@ export default function HeroSlider() {
                       isActive ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
                     }`}
                   >
-                    <Link
-                      href={slide.primaryCta.href}
-                      className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury hover:scale-105 transition-all duration-300"
-                    >
-                      {slide.primaryCta.label}
-                    </Link>
-                    <Link
-                      href={slide.secondaryCta.href}
-                      className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md hover:border-gold-400 transition-all duration-300"
-                    >
-                      {slide.secondaryCta.label}
-                    </Link>
+                    {slide.primaryCta.href.startsWith("http") ? (
+                      <a
+                        href={slide.primaryCta.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury hover:scale-105 transition-all duration-300 inline-block text-center"
+                      >
+                        {slide.primaryCta.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={slide.primaryCta.href}
+                        className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury hover:scale-105 transition-all duration-300 inline-block text-center"
+                      >
+                        {slide.primaryCta.label}
+                      </Link>
+                    )}
+
+                    {slide.secondaryCta.href.startsWith("http") ? (
+                      <a
+                        href={slide.secondaryCta.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md hover:border-gold-400 transition-all duration-300 inline-block text-center"
+                      >
+                        {slide.secondaryCta.label}
+                      </a>
+                    ) : (
+                      <Link
+                        href={slide.secondaryCta.href}
+                        className="px-8 py-3.5 rounded-full text-xs sm:text-sm font-bold tracking-[0.15em] uppercase text-white bg-white/10 hover:bg-white/20 border border-white/20 backdrop-blur-md hover:border-gold-400 transition-all duration-300 inline-block text-center"
+                      >
+                        {slide.secondaryCta.label}
+                      </Link>
+                    )}
                   </div>
                 </div>
               </div>

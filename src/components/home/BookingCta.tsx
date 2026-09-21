@@ -1,6 +1,6 @@
 import React from "react";
-import Link from "next/link";
 import { Activity, Scissors, CalendarCheck } from "lucide-react";
+import { BOOKING_LINKS } from "@/data/siteContent";
 
 export default function BookingCta() {
   return (
@@ -17,7 +17,7 @@ export default function BookingCta() {
             Clinical Booking Or Salon Services
           </h2>
           <p className="text-sm sm:text-base text-zinc-300">
-            Select your desired appointment type below to book your service or consultation.
+            Select your desired appointment type below to book your service or consultation on Fresha.
           </p>
         </div>
 
@@ -36,13 +36,15 @@ export default function BookingCta() {
               </p>
             </div>
             <div className="pt-8">
-              <Link
-                href="/book?type=clinical"
+              <a
+                href={BOOKING_LINKS.salonFresha}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all duration-300"
               >
                 <CalendarCheck className="w-4 h-4" />
                 <span>Book Clinical Treatment</span>
-              </Link>
+              </a>
             </div>
           </div>
 
@@ -60,12 +62,14 @@ export default function BookingCta() {
               </p>
             </div>
             <div className="pt-8">
-              <Link
-                href="/book?type=salon"
+              <a
+                href={BOOKING_LINKS.salonFresha}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-full inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-full text-xs font-bold uppercase tracking-widest text-white bg-white/10 hover:bg-white/20 border border-white/20 hover:border-gold-400 transition-all duration-300"
               >
                 <span>Book Salon Service</span>
-              </Link>
+              </a>
             </div>
           </div>
         </div>

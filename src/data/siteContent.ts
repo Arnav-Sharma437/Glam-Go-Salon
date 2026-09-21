@@ -47,9 +47,9 @@ export interface WhyUsItem {
 }
 
 export const BOOKING_LINKS = {
-  salonFresha: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
-  clinicalFresha: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
-  laserBooking: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
+  salonFresha: "https://www.fresha.com/en-GB/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&pId=2710857",
+  sharedFresha: "https://www.fresha.com/en-GB/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
+  laserBooking: "https://www.fresha.com/en-GB/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&pId=2710857",
 };
 
 export const SITE_INFO = {
@@ -84,7 +84,7 @@ export const HERO_SLIDES = [
     description: "Welcome to Glam and Go — where expertise meets the latest technology in Hounslow.",
     image: "/images/salon/salon-suite-3.webp",
     primaryCta: { label: "Salon Services", href: "/services" },
-    secondaryCta: { label: "Clinical Booking", href: "/book?type=clinical" },
+    secondaryCta: { label: "Clinical Booking", href: BOOKING_LINKS.salonFresha, external: true },
   },
   {
     id: "slide-2",
@@ -93,7 +93,7 @@ export const HERO_SLIDES = [
     description: "Delivering exceptional care and results tailored to every client under one roof.",
     image: "/images/banners/banner-beauty.png",
     primaryCta: { label: "Laser Hair Removal", href: "/laser-hair-removal" },
-    secondaryCta: { label: "Clinical Booking", href: "/book?type=clinical" },
+    secondaryCta: { label: "Clinical Booking", href: BOOKING_LINKS.salonFresha, external: true },
   },
 ];
 

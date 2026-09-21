@@ -14,7 +14,7 @@ import {
   Navigation,
   Calendar,
 } from "lucide-react";
-import { SITE_INFO } from "@/data/siteContent";
+import { SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -38,19 +38,24 @@ export default function ContactPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
+
       const data = await res.json();
 
-      if (data.success) {
+      if (res.ok && data.success !== false) {
         setStatus("success");
-        setResponseMsg(data.message || "Thank you! We have received your message.");
+        setResponseMsg(data.message || "Thank you! We have received your message and will respond promptly.");
         setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
       } else {
         setStatus("error");
-        setResponseMsg(data.error || "Failed to submit. Please try again.");
+        setResponseMsg(data.error || "Failed to send message. Please call us directly.");
       }
-    } catch {
+    } catch (err: unknown) {
       setStatus("error");
-      setResponseMsg("An error occurred. Please contact us by phone.");
+      if (err instanceof Error) {
+        setResponseMsg(err.message);
+      } else {
+        setResponseMsg("An unexpected error occurred. Please contact us directly.");
+      }
     }
   };
 
@@ -73,13 +78,15 @@ export default function ContactPage() {
       <section className="bg-white border-b border-zinc-200 py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <Link
-              href="/book"
+            <a
+              href={BOOKING_LINKS.salonFresha}
+              target="_blank"
+              rel="noopener noreferrer"
               className="p-4 rounded-2xl bg-noir-950 text-white hover:bg-gold-500 hover:text-noir-950 transition-all flex items-center justify-center gap-2 text-xs font-bold uppercase tracking-wider shadow-sm"
             >
               <Calendar className="w-4 h-4" />
               <span>Book Now</span>
-            </Link>
+            </a>
 
             <a
               href={`tel:${SITE_INFO.phonePrimaryClean}`}

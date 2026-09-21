@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X, ExternalLink, Calendar, Sparkles } from "lucide-react";
-import { SITE_INFO } from "@/data/siteContent";
+import { SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -95,7 +95,7 @@ export default function Navbar() {
                   }`}
                 >
                   <span className="flex items-center gap-1">
-                    {link.highlight && <Sparkles className="w-3 h-3 text-gold-400" />}
+                    {link.highlight && <Sparkles className="w-3.5 h-3.5 text-gold-400" />}
                     <span>{link.label}</span>
                   </span>
                   {isActive && (
@@ -108,23 +108,27 @@ export default function Navbar() {
 
           {/* Right Action CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <Link
-              href="/book"
+            <a
+              href={BOOKING_LINKS.salonFresha}
+              target="_blank"
+              rel="noopener noreferrer"
               className="relative inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-full text-xs font-bold tracking-widest uppercase text-noir-950 bg-gradient-to-r from-gold-400 via-gold-500 to-gold-400 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all duration-300 hover:scale-105 hover:shadow-gold_glow active:scale-95"
             >
               <Calendar className="w-3.5 h-3.5" />
               <span>Book Now</span>
-            </Link>
+            </a>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-3">
-            <Link
-              href="/book"
+            <a
+              href={BOOKING_LINKS.salonFresha}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-3.5 py-1.5 rounded-full text-[11px] font-bold tracking-wider uppercase text-noir-950 bg-gold-400 hover:bg-gold-300 transition-colors"
             >
               Book
-            </Link>
+            </a>
             <button
               type="button"
               onClick={() => setIsOpen(!isOpen)}
@@ -178,12 +182,14 @@ export default function Navbar() {
           </div>
 
           <div className="pt-4 flex flex-col gap-3">
-            <Link
-              href="/book"
-              className="w-full text-center py-3 rounded-full text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-gold-400 to-gold-600 text-noir-950 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
+            <a
+              href={BOOKING_LINKS.salonFresha}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center py-3 rounded-full text-xs font-bold uppercase tracking-widest bg-gradient-to-r from-gold-400 to-gold-600 text-noir-950 hover:from-gold-300 hover:to-gold-500 shadow-luxury block"
             >
               Book An Appointment
-            </Link>
+            </a>
             <div className="text-center text-xs text-zinc-400 pt-2">
               Call us: <a href={`tel:${SITE_INFO.phonePrimaryClean}`} className="text-gold-400 hover:underline">{SITE_INFO.phonePrimary}</a>
             </div>

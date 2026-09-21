@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import { Sparkles, ArrowRight } from "lucide-react";
-import { ABOUT_CONTENT, STATS, SITE_INFO } from "@/data/siteContent";
+import { ABOUT_CONTENT, STATS, SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
 
@@ -139,12 +139,14 @@ export default function AboutPage() {
             Unit 21, Treaty Centre, High St, Hounslow TW3 1ES
           </p>
           <div className="pt-2 flex flex-wrap justify-center gap-4">
-            <Link
-              href="/book"
+            <a
+              href={BOOKING_LINKS.salonFresha}
+              target="_blank"
+              rel="noopener noreferrer"
               className="px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury"
             >
               Book An Appointment
-            </Link>
+            </a>
             <Link
               href="/contact"
               className="px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-white border border-zinc-300 hover:border-gold-500 shadow-sm"

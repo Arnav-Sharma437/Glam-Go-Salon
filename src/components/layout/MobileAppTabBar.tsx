@@ -10,6 +10,7 @@ import {
   Calendar,
   PhoneCall,
 } from "lucide-react";
+import { BOOKING_LINKS } from "@/data/siteContent";
 
 export default function MobileAppTabBar() {
   const pathname = usePathname();
@@ -36,10 +37,11 @@ export default function MobileAppTabBar() {
     },
     {
       label: "Book",
-      href: "/book",
+      href: BOOKING_LINKS.salonFresha,
       icon: Calendar,
-      isActive: pathname === "/book",
+      isActive: false,
       isPrimary: true,
+      external: true,
     },
     {
       label: "Contact",
@@ -57,9 +59,11 @@ export default function MobileAppTabBar() {
 
           if (tab.isPrimary) {
             return (
-              <Link
+              <a
                 key={tab.label}
                 href={tab.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex flex-col items-center justify-center -mt-5 relative group"
               >
                 <div className="w-12 h-12 rounded-full bg-gradient-to-tr from-gold-500 via-gold-400 to-gold-300 text-noir-950 flex items-center justify-center shadow-luxury border-2 border-noir-950 active:scale-95 transition-transform">
@@ -68,7 +72,7 @@ export default function MobileAppTabBar() {
                 <span className="text-[10px] font-bold uppercase tracking-wider text-gold-400 mt-1">
                   {tab.label}
                 </span>
-              </Link>
+              </a>
             );
           }
 

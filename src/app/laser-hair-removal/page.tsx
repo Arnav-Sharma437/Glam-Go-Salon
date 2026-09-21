@@ -173,12 +173,14 @@ export default function LaserHairRemovalPage() {
                   All laser treatments require a brief initial consultation and patch test at least 24 hours in advance to evaluate your skin type and ensure optimal comfort. For appointments surpassing £75, a standard deposit is applicable.
                 </p>
                 <div className="pt-2 flex flex-wrap items-center gap-3">
-                  <Link
-                    href="/book?type=salon&service=Laser%20Hair%20Removal"
+                  <a
+                    href={BOOKING_LINKS.laserBooking}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="text-xs font-semibold text-gold-400 hover:text-gold-300 underline underline-offset-4"
                   >
                     Request Consultation Online &rarr;
-                  </Link>
+                  </a>
                 </div>
               </div>
             </div>
