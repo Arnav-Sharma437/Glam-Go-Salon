@@ -3,8 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
-import { ArrowLeft, Phone, CalendarCheck, Clock, Tag, ArrowRight } from "lucide-react";
+import { ArrowLeft, Phone, CalendarCheck, Sparkles, ShieldCheck } from "lucide-react";
 import { SERVICES, SITE_INFO, BOOKING_LINKS, TREATMENT_PACKAGES } from "@/data/siteContent";
+import ServiceTreatmentsExplorer from "@/components/services/ServiceTreatmentsExplorer";
 
 export async function generateStaticParams() {
   return SERVICES.map((service) => ({
@@ -41,11 +42,18 @@ export default async function ServiceDetailPage({
 
   const bookingUrl = BOOKING_LINKS.salonFresha;
 
+  const categoryPackages = TREATMENT_PACKAGES.filter((p) => {
+    if (slug === "aesthetics-injectables") return true;
+    if (slug === "facials") return p.category === "Chemical Peels" || p.category === "Microneedling" || p.category === "Advanced Facials";
+    if (slug === "skin-treatments") return p.category === "PRP Therapy" || p.category === "Microneedling" || p.category === "Chemical Peels";
+    return false;
+  });
+
   return (
     <div className="bg-cream-50 text-noir-950 py-12 lg:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         {/* Back Link */}
-        <div className="mb-8">
+        <div>
           <Link
             href="/services"
             className="inline-flex items-center gap-2 text-xs uppercase font-semibold tracking-wider text-zinc-500 hover:text-gold-600 transition-colors"
@@ -56,10 +64,10 @@ export default async function ServiceDetailPage({
         </div>
 
         {/* Main Details Hero */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center bg-white rounded-3xl p-6 sm:p-10 border border-zinc-200/90 shadow-sm">
           {/* Left: Image Card */}
           <div className="lg:col-span-5 relative">
-            <div className="relative h-[380px] sm:h-[480px] w-full rounded-3xl overflow-hidden shadow-2xl border-4 border-white sticky top-28">
+            <div className="relative h-[280px] sm:h-[360px] w-full rounded-2xl overflow-hidden shadow-xl border-2 border-white">
               <Image
                 src={service.image}
                 alt={service.title}
@@ -67,14 +75,14 @@ export default async function ServiceDetailPage({
                 priority
                 className="object-cover"
               />
-              <div className="absolute top-4 left-4 bg-noir-950/80 backdrop-blur-md text-gold-400 text-xs font-semibold px-3.5 py-1.5 rounded-full border border-gold-500/30 uppercase tracking-wider">
+              <div className="absolute top-3 left-3 bg-noir-950/85 backdrop-blur-md text-gold-400 text-xs font-semibold px-3 py-1 rounded-full border border-gold-500/30 uppercase tracking-wider">
                 {service.category}
               </div>
             </div>
           </div>
 
           {/* Right: Detailed Content */}
-          <div className="lg:col-span-7 space-y-6">
+          <div className="lg:col-span-7 space-y-4">
             <div>
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold-600">
                 Salon &amp; Clinical Category
@@ -84,160 +92,46 @@ export default async function ServiceDetailPage({
               </h1>
             </div>
 
-            <p className="text-base sm:text-lg text-noir-900 leading-relaxed font-normal">
+            <p className="text-sm sm:text-base text-zinc-700 leading-relaxed font-normal">
               {service.fullDesc}
             </p>
 
-            {/* Treatments & Pricing */}
-            {service.treatments && (
-              <div className="p-6 sm:p-8 bg-white rounded-3xl border border-zinc-200/90 shadow-sm space-y-4">
-                <div className="flex items-center justify-between">
-                  <h3 className="text-sm font-semibold uppercase tracking-wider text-gold-600">
-                    Treatments &amp; Pricing
-                  </h3>
-                  {service.startingPrice && (
-                    <span className="text-xs font-medium text-gold-700">
-                      {service.startingPrice}
-                    </span>
-                  )}
-                </div>
-                <div className="space-y-3">
-                  {service.treatments.map((treatment, idx) => (
-                    <div
-                      key={idx}
-                      className="p-4 bg-cream-50/80 hover:bg-cream-100/80 rounded-2xl border border-zinc-200/80 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm"
-                    >
-                      <div className="space-y-0.5">
-                        <span className="font-semibold text-noir-950 block">{treatment.name}</span>
-                        {treatment.description && (
-                          <p className="text-xs text-zinc-500 leading-relaxed max-w-md">
-                            {treatment.description}
-                          </p>
-                        )}
-                        <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-zinc-600">
-                          {treatment.duration && (
-                            <span className="flex items-center gap-1.5">
-                              <Clock className="w-3.5 h-3.5 text-gold-600" />
-                              <span>{treatment.duration}</span>
-                            </span>
-                          )}
-                          {treatment.price && (
-                            <span className="flex items-center gap-1.5 font-bold text-gold-700 bg-gold-50 px-2.5 py-0.5 rounded border border-gold-200">
-                              <Tag className="w-3.5 h-3.5" />
-                              <span>{treatment.price}</span>
-                            </span>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="shrink-0 pt-2 sm:pt-0">
-                        <a
-                          href={treatment.freshaUrl || bookingUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-noir-950 bg-gold-400 hover:bg-gold-500 transition-colors shadow-sm"
-                        >
-                          <span>Book</span>
-                          <ArrowRight className="w-3 h-3" />
-                        </a>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Relevant Packages & Courses */}
-            {(() => {
-              const categoryPackages = TREATMENT_PACKAGES.filter((p) => {
-                if (slug === "aesthetics-injectables") return true;
-                if (slug === "facials") return p.category === "Chemical Peels" || p.category === "Microneedling" || p.category === "Advanced Facials";
-                if (slug === "skin-treatments") return p.category === "PRP Therapy" || p.category === "Microneedling" || p.category === "Chemical Peels";
-                return false;
-              });
-
-              if (categoryPackages.length === 0) return null;
-
-              return (
-                <div className="p-6 sm:p-8 bg-noir-950 text-white rounded-3xl border border-gold-500/30 shadow-luxury space-y-4">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <span className="text-[10px] uppercase tracking-widest text-gold-400 font-semibold block">
-                        Value Courses
-                      </span>
-                      <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
-                        Treatment Packages &amp; Courses
-                      </h3>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 pt-1">
-                    {categoryPackages.map((pkg) => (
-                      <div
-                        key={pkg.id}
-                        className="p-4 bg-noir-900/90 rounded-2xl border border-white/10 hover:border-gold-500/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm"
-                      >
-                        <div className="space-y-0.5">
-                          <div className="flex items-center gap-2">
-                            <span className="font-semibold text-white block">{pkg.title}</span>
-                            {pkg.saving && (
-                              <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/30">
-                                {pkg.saving}
-                              </span>
-                            )}
-                          </div>
-                          {pkg.description && (
-                            <p className="text-xs text-zinc-400 leading-relaxed max-w-md">
-                              {pkg.description}
-                            </p>
-                          )}
-                          <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-zinc-300">
-                            <span>Single: {pkg.singlePrice}</span>
-                            <span>•</span>
-                            <span className="text-gold-400 font-bold">
-                              Course ({pkg.courseSessions}): {pkg.coursePrice}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className="shrink-0 pt-2 sm:pt-0">
-                          <a
-                            href={pkg.freshaUrl || bookingUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-noir-950 bg-gold-400 hover:bg-gold-500 transition-colors shadow-sm"
-                          >
-                            <span>Book Package</span>
-                            <ArrowRight className="w-3 h-3" />
-                          </a>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              );
-            })()}
-
-            {/* Booking Actions */}
-            <div className="pt-4 flex flex-wrap items-center gap-4">
+            <div className="pt-2 flex flex-wrap items-center gap-3">
               <a
                 href={bookingUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all"
+                className="inline-flex items-center gap-2 px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all"
               >
                 <CalendarCheck className="w-4 h-4" />
                 <span>Book on Fresha</span>
               </a>
               <a
                 href={`tel:${SITE_INFO.phonePrimaryClean}`}
-                className="inline-flex items-center gap-2 px-6 py-4 rounded-full text-xs font-semibold text-zinc-700 bg-white border border-zinc-300 hover:border-gold-500 transition-colors shadow-sm"
+                className="inline-flex items-center gap-2 px-5 py-3 rounded-full text-xs font-semibold text-zinc-700 bg-cream-50 border border-zinc-300 hover:border-gold-500 transition-colors"
               >
-                <Phone className="w-3.5 h-3.5 text-gold-500" />
+                <Phone className="w-3.5 h-3.5 text-gold-600" />
                 <span>Call: {SITE_INFO.phonePrimary}</span>
               </a>
             </div>
           </div>
+        </div>
+
+        {/* Interactive Treatment & Package Explorer (Eliminates excessive scrolling with compact 2-column grid, search, and category pills) */}
+        <ServiceTreatmentsExplorer
+          treatments={service.treatments}
+          packages={categoryPackages}
+          serviceTitle={service.title}
+          serviceCategory={service.category}
+          startingPrice={service.startingPrice}
+          defaultFreshaUrl={bookingUrl}
+          slug={slug}
+        />
+
+        {/* Clinical suitability note */}
+        <div className="p-4 rounded-2xl bg-white border border-zinc-200/90 text-center text-xs text-zinc-600 max-w-3xl mx-auto flex items-center justify-center gap-2 shadow-sm">
+          <ShieldCheck className="w-4 h-4 text-gold-600 shrink-0" />
+          <span>All advanced aesthetic treatments, laser sessions and IV infusions are subject to initial consultation and clinical suitability.</span>
         </div>
       </div>
     </div>
