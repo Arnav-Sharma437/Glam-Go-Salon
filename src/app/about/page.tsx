@@ -2,10 +2,17 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
-import { Sparkles, ArrowRight } from "lucide-react";
+import { Sparkles, ArrowRight, Award, Leaf, ThumbsUp, Users } from "lucide-react";
 import { ABOUT_CONTENT, STATS, SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
 import SectionHeading from "@/components/ui/SectionHeading";
 import WhyChooseUs from "@/components/home/WhyChooseUs";
+
+const iconMap: Record<string, React.ElementType> = {
+  Award,
+  Leaf,
+  ThumbsUp,
+  Users,
+};
 
 export const metadata: Metadata = {
   title: "About Us | Luxury Aesthetic & Beauty Salon",
@@ -114,14 +121,22 @@ export default function AboutPage() {
       <section className="bg-noir-950 text-white py-16 border-y border-gold-500/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            {STATS.map((stat, i) => (
-              <div key={i} className="p-4">
-                <div className="text-4xl sm:text-5xl font-serif font-bold text-gold-400 mb-1">
-                  {stat.value}
+            {STATS.map((stat, i) => {
+              const Icon = stat.icon ? iconMap[stat.icon] : null;
+              return (
+                <div key={i} className="p-4 flex flex-col items-center justify-center group">
+                  {Icon && (
+                    <div className="w-12 h-12 rounded-full bg-gold-500/10 border border-gold-500/30 flex items-center justify-center mb-3 text-gold-400 group-hover:scale-110 group-hover:bg-gold-500/20 transition-all">
+                      <Icon className="w-6 h-6 stroke-[1.5]" />
+                    </div>
+                  )}
+                  <div className="text-4xl sm:text-5xl font-serif font-bold text-gold-400 mb-1">
+                    {stat.value}
+                  </div>
+                  <div className="text-xs tracking-wider text-zinc-300">{stat.label}</div>
                 </div>
-                <div className="text-xs uppercase tracking-wider text-zinc-300">{stat.label}</div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>

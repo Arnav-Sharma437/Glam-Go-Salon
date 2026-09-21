@@ -101,10 +101,10 @@ export const HERO_SLIDES = [
 
 // Statistics exactly from live website
 export const STATS = [
-  { value: "3.5K", label: "Happy Clients" },
-  { value: "25+", label: "Years Of Experience" },
-  { value: "5+", label: "Academy Courses" },
-  { value: "35+", label: "Professional Team" },
+  { value: "15", label: "Years of Experience", icon: "Award" },
+  { value: "100%", label: "Natural Products", icon: "Leaf" },
+  { value: "699", label: "Satisfied Clients", icon: "ThumbsUp" },
+  { value: "12", label: "Specialists in The Team", icon: "Users" },
 ];
 
 // About Us verbatim copy from live website
@@ -113,7 +113,7 @@ export const ABOUT_CONTENT = {
   title: "Welcome To The Luxury Aesthetic & Beauty Salon",
   lead: "Welcome to Glam and Go — where expertise meets the latest technology. We provide premium hair, beauty, and aesthetic services all under one roof, delivering exceptional care and results tailored to every client.",
   paragraph1: "We are also proud to introduce our Training Academy, led by experienced and highly qualified educators dedicated to helping students develop professional skills and confidence. Our commitment to innovation, education, and excellence has taken our services to the next level, creating a complete beauty destination for both clients and aspiring professionals.",
-  founderNote: "Glam & Go is a Hounslow beauty haven with a rich legacy spanning over two decades. Founded by visionary Zaida, the salon has blossomed into a destination for hairstyling artistry and luxurious experiences.",
+  founderNote: "Glam & Go is a Hounslow beauty haven with a rich legacy spanning over 15 years. Founded by visionary Zaida, the salon has blossomed into a destination for hairstyling artistry and luxurious experiences.",
   image1: "/images/salon/salon-suite-3.webp",
   image2: "/images/salon/salon-atmosphere.jpg",
 };
