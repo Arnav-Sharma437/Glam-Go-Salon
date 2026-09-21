@@ -6,6 +6,18 @@ export interface TreatmentItem {
   description?: string;
 }
 
+export interface PackageItem {
+  id: string;
+  title: string;
+  category: string;
+  singlePrice: string;
+  courseSessions: string;
+  coursePrice: string;
+  saving?: string;
+  freshaUrl?: string;
+  description?: string;
+}
+
 export interface ServiceItem {
   id: string;
   slug: string;
@@ -36,7 +48,7 @@ export interface WhyUsItem {
 
 export const BOOKING_LINKS = {
   salonFresha: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
-  clinicalPhorest: "https://www.phorest.com/salon/glamourhairbeautytheglamclinic",
+  clinicalFresha: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
   laserBooking: "https://www.fresha.com/a/glam-go-hounslow-hounslow-unit-21-treaty-centre-high-st-zkawcm12/all-offer?menu=true&share=true&pId=2710857",
 };
 
@@ -202,9 +214,9 @@ export const SERVICES: ServiceItem[] = [
       { name: "Jawline Contouring", duration: "30 mins", price: "From £200", description: "Precision anti-wrinkle contouring along the jawline." },
       { name: "Nefertiti Neck Lift", duration: "30-45 mins", price: "From £300", description: "Targeted neck and lower jawline muscle treatment." },
       { name: "Full Face Mini Botox", duration: "45 mins", price: "From £500", description: "Full face micro-droplet smoothing and rejuvenation." },
+      { name: "Excessive Sweating / Hyperhidrosis Treatment", duration: "45 mins", description: "Specialised clinical anti-sweating treatment. Subject to consultation." },
 
       // 3. Dermal Filler Treatments
-      { name: "Cheek Volume 1–2 ml", duration: "45 mins", price: "From £50", description: "Dermal filler treatment to restore midface volume." },
       { name: "Chin Fillers", duration: "45 mins", price: "From £150", description: "Chin contouring and profile balancing." },
       { name: "Nose Fillers", duration: "45 mins", price: "From £200", description: "Non-surgical rhinoplasty filler contouring." },
       { name: "Lip Fillers", duration: "45 mins", price: "From £200", description: "Dermal filler for lip shape, volume and definition." },
@@ -212,7 +224,7 @@ export const SERVICES: ServiceItem[] = [
       { name: "Lip Enhancement", duration: "45 mins", price: "From £200", description: "Subtle lip hydration, border definition and enhancement." },
       { name: "Nasolabial Folds", duration: "45 mins", price: "From £200", description: "Dermal filler for smoothing nasolabial smile lines." },
       { name: "Cheek Augmentation", duration: "45-60 mins", price: "From £200", description: "Cheekbone definition and midface enhancement." },
-      { name: "Nose Augmentation 0.5ml", duration: "45 mins", price: "From £250", description: "Targeted 0.5ml dermal filler for nasal contouring." },
+      { name: "Nose Augmentation 0.5ml", duration: "45 mins", price: "From £200", description: "Targeted 0.5ml dermal filler for nasal contouring." },
       { name: "Nasolabial 1–2ml", duration: "45 mins", price: "From £250", description: "Comprehensive 1–2ml filler for deeper smile lines." },
       { name: "Profhilo 2–4ml", duration: "45 mins", price: "From £399", description: "Hyaluronic acid bio-remodelling for skin firmness and elasticity." },
 
@@ -239,17 +251,17 @@ export const SERVICES: ServiceItem[] = [
       { name: "Vitamin D Injection", duration: "15 mins", price: "From £40", description: "Intramuscular Vitamin D booster injection." },
 
       // 7. IV Drips (Intravenous Nutrient Therapy)
-      { name: "Hydration Drip", duration: "45-60 mins", price: "From £100", description: "Electrolyte and fluid replenishment IV infusion." },
-      { name: "Magnesium Drip", duration: "45-60 mins", price: "From £150", description: "Magnesium infusion for muscle relaxation and recovery." },
-      { name: "Immunity Detox", duration: "45-60 mins", price: "From £150", description: "Nutrient blend to support immune function." },
-      { name: "Vitamin C (IV Base)", duration: "45-60 mins", price: "From £150", description: "High-dose Vitamin C intravenous infusion." },
-      { name: "Glutathione Drip", duration: "45-60 mins", price: "From £160", description: "Glutathione antioxidant intravenous infusion." },
-      { name: "Multivitamin Drip", duration: "45-60 mins", price: "From £180", description: "Comprehensive vitamin and nutrient intravenous blend." },
-      { name: "Brightening Drip", duration: "45-60 mins", price: "From £180", description: "Antioxidant nutrient blend for skin radiance." },
-      { name: "Anti-ageing Drip", duration: "45-60 mins", price: "From £200", description: "Targeted antioxidant infusion supporting cellular health." },
-      { name: "Iron Drip", duration: "45-60 mins", price: "From £200", description: "Intravenous iron support infusion." },
-      { name: "Weight Loss Drip", duration: "45-60 mins", price: "From £200", description: "Metabolic support nutrient infusion." },
-      { name: "NAD IV Drip", duration: "60-90 mins", price: "From £400", description: "Cellular vitality and NAD+ infusion." },
+      { name: "Hydration Drip", duration: "45-60 mins", price: "From £100", description: "Electrolyte and fluid replenishment IV infusion. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Magnesium Drip", duration: "45-60 mins", price: "From £150", description: "Magnesium infusion for muscle relaxation and recovery. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Immunity Detox", duration: "45-60 mins", price: "From £150", description: "Nutrient blend to support immune function. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Vitamin C (IV Base)", duration: "45-60 mins", price: "From £150", description: "High-dose Vitamin C intravenous infusion. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Glutathione Drip", duration: "45-60 mins", price: "From £160", description: "Glutathione antioxidant intravenous infusion. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Multivitamin Drip", duration: "45-60 mins", price: "From £180", description: "Comprehensive vitamin and nutrient intravenous blend. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Brightening Drip", duration: "45-60 mins", price: "From £180", description: "Antioxidant nutrient blend for skin radiance. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Anti-ageing Drip", duration: "45-60 mins", price: "From £200", description: "Targeted antioxidant infusion supporting cellular health. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Iron Drip", duration: "45-60 mins", price: "From £200", description: "Intravenous iron support infusion. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "Weight Loss Drip", duration: "45-60 mins", price: "From £200", description: "Metabolic support nutrient infusion. Subject to consultation, medical assessment and clinical suitability." },
+      { name: "NAD IV Drip", duration: "60-90 mins", price: "From £400", description: "Cellular vitality and NAD+ infusion. Subject to consultation, medical assessment and clinical suitability." },
 
       // Consultation
       { name: "Free Aesthetics Consultation", duration: "20 mins", price: "Free", description: "Personalised treatment consultation and facial assessment." },
@@ -471,6 +483,260 @@ export const FAQS = [
   {
     question: "Where can I find Glam & Go Training Academy courses?",
     answer: "Our Training Academy has its own dedicated website. Please visit https://glamandgoacademy.com/ or click 'Academy' in our navigation to view course information and enrol.",
+  },
+];
+
+// Verified Master Treatment Packages & Courses
+export const TREATMENT_PACKAGES: PackageItem[] = [
+  // 1. PRP Therapy
+  {
+    id: "pkg-prp-face-3",
+    title: "Facial PRP Course",
+    category: "PRP Therapy",
+    singlePrice: "£150",
+    courseSessions: "3 sessions",
+    coursePrice: "£420",
+    saving: "Save £30",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Course of 3 platelet-rich plasma facial rejuvenation treatments.",
+  },
+  {
+    id: "pkg-prp-face-5",
+    title: "Facial PRP Intensive Course",
+    category: "PRP Therapy",
+    singlePrice: "£150",
+    courseSessions: "5 sessions",
+    coursePrice: "£650",
+    saving: "Save £100",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Complete course of 5 facial PRP treatments for long-lasting collagen stimulation.",
+  },
+  {
+    id: "pkg-prp-hair-3",
+    title: "Hair PRP Course",
+    category: "PRP Therapy",
+    singlePrice: "£150",
+    courseSessions: "3 sessions",
+    coursePrice: "£420",
+    saving: "Save £30",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Course of 3 scalp platelet-rich plasma treatments for hair density support.",
+  },
+  {
+    id: "pkg-prp-hair-5",
+    title: "Hair PRP Intensive Course",
+    category: "PRP Therapy",
+    singlePrice: "£150",
+    courseSessions: "5 sessions",
+    coursePrice: "£650",
+    saving: "Save £100",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Comprehensive course of 5 hair PRP treatments.",
+  },
+
+  // 2. Microneedling Packages
+  {
+    id: "pkg-micro-face-3",
+    title: "Full Face Microneedling",
+    category: "Microneedling",
+    singlePrice: "£150",
+    courseSessions: "3 sessions",
+    coursePrice: "£405",
+    saving: "Save £45",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Collagen induction therapy covering the entire face.",
+  },
+  {
+    id: "pkg-micro-neck-3",
+    title: "Face & Neck Microneedling",
+    category: "Microneedling",
+    singlePrice: "£200",
+    courseSessions: "3 sessions",
+    coursePrice: "£540",
+    saving: "Save £60",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Comprehensive collagen induction therapy covering face and neck.",
+  },
+
+  // 3. Chemical Peels / SkinCeuticals
+  {
+    id: "pkg-peel-gel-3",
+    title: "SkinCeuticals Gel Peel Course (3)",
+    category: "Chemical Peels",
+    singlePrice: "£90",
+    courseSessions: "3 sessions",
+    coursePrice: "£270",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Course of 3 SkinCeuticals gel peel treatments.",
+  },
+  {
+    id: "pkg-peel-gel-6",
+    title: "SkinCeuticals Gel Peel Course (6)",
+    category: "Chemical Peels",
+    singlePrice: "£90",
+    courseSessions: "6 sessions",
+    coursePrice: "£510",
+    saving: "Save £30",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Intensive 6-session professional peel series for radiant skin texture.",
+  },
+  {
+    id: "pkg-peel-gly20-3",
+    title: "20% Glycolic Peel Course",
+    category: "Chemical Peels",
+    singlePrice: "£120",
+    courseSessions: "3 sessions",
+    coursePrice: "£325",
+    saving: "Save £35",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Targeted 3-session glycolic peel course for skin renewal.",
+  },
+  {
+    id: "pkg-peel-gly30-3",
+    title: "30% Glycolic Peel Course",
+    category: "Chemical Peels",
+    singlePrice: "£130",
+    courseSessions: "3 sessions",
+    coursePrice: "£350",
+    saving: "Save £40",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Advanced 3-session resurfacing peel course.",
+  },
+
+  // 4. Radiofrequency Facial
+  {
+    id: "pkg-rf-face-5",
+    title: "Radiofrequency Facial Course",
+    category: "Advanced Facials",
+    singlePrice: "£100",
+    courseSessions: "5 sessions",
+    coursePrice: "£400",
+    saving: "Save £100",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "5-session course of radiofrequency skin tightening.",
+  },
+
+  // 5. IV Therapy Packages
+  {
+    id: "pkg-iv-hyd-3",
+    title: "Hydration IV Drip (3)",
+    category: "IV Therapy",
+    singlePrice: "£100",
+    courseSessions: "3 sessions",
+    coursePrice: "£270",
+    saving: "Save £30",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Electrolyte replenishment. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-hyd-5",
+    title: "Hydration IV Drip (5)",
+    category: "IV Therapy",
+    singlePrice: "£100",
+    courseSessions: "5 sessions",
+    coursePrice: "£425",
+    saving: "Save £75",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Electrolyte replenishment. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-vitc-3",
+    title: "Vitamin C IV Drip (3)",
+    category: "IV Therapy",
+    singlePrice: "£150",
+    courseSessions: "3 sessions",
+    coursePrice: "£405",
+    saving: "Save £45",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Vitamin C infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-vitc-5",
+    title: "Vitamin C IV Drip (5)",
+    category: "IV Therapy",
+    singlePrice: "£150",
+    courseSessions: "5 sessions",
+    coursePrice: "£640",
+    saving: "Save £110",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Vitamin C infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-mag-3",
+    title: "Magnesium IV Drip (3)",
+    category: "IV Therapy",
+    singlePrice: "£150",
+    courseSessions: "3 sessions",
+    coursePrice: "£405",
+    saving: "Save £45",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Magnesium infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-mag-5",
+    title: "Magnesium IV Drip (5)",
+    category: "IV Therapy",
+    singlePrice: "£150",
+    courseSessions: "5 sessions",
+    coursePrice: "£640",
+    saving: "Save £110",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Magnesium infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-glut-3",
+    title: "Glutathione IV Drip (3)",
+    category: "IV Therapy",
+    singlePrice: "£160",
+    courseSessions: "3 sessions",
+    coursePrice: "£430",
+    saving: "Save £50",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Glutathione infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-glut-5",
+    title: "Glutathione IV Drip (5)",
+    category: "IV Therapy",
+    singlePrice: "£160",
+    courseSessions: "5 sessions",
+    coursePrice: "£680",
+    saving: "Save £120",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Glutathione infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-multi-3",
+    title: "Multivitamin IV Drip (3)",
+    category: "IV Therapy",
+    singlePrice: "£180",
+    courseSessions: "3 sessions",
+    coursePrice: "£485",
+    saving: "Save £55",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Comprehensive multivitamin infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-multi-5",
+    title: "Multivitamin IV Drip (5)",
+    category: "IV Therapy",
+    singlePrice: "£180",
+    courseSessions: "5 sessions",
+    coursePrice: "£765",
+    saving: "Save £135",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Comprehensive multivitamin infusion. Subject to consultation and clinical suitability.",
+  },
+  {
+    id: "pkg-iv-nad-3",
+    title: "NAD IV Drip (3)",
+    category: "IV Therapy",
+    singlePrice: "£400",
+    courseSessions: "3 sessions",
+    coursePrice: "£1,080",
+    saving: "Save £120",
+    freshaUrl: BOOKING_LINKS.salonFresha,
+    description: "Cellular vitality NAD+ infusion. Subject to consultation and clinical suitability.",
   },
 ];
 

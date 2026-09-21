@@ -58,10 +58,7 @@ function BookingContent() {
 
   const serviceOptions = bookingType === "clinical" ? clinicalServices : salonServices;
 
-  const directExternalBookingUrl =
-    bookingType === "clinical"
-      ? BOOKING_LINKS.clinicalPhorest
-      : BOOKING_LINKS.salonFresha;
+  const directExternalBookingUrl = BOOKING_LINKS.salonFresha;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -190,7 +187,7 @@ function BookingContent() {
               <span>Instant Online Booking</span>
             </div>
             <p className="text-xs text-zinc-300">
-              Book directly via our verified {bookingType === "clinical" ? "Phorest Clinic" : "Fresha"} portal for live slot availability.
+              Book directly via our verified Fresha portal for live slot availability and instant confirmation.
             </p>
           </div>
           <a
@@ -199,7 +196,7 @@ function BookingContent() {
             rel="noopener noreferrer"
             className="shrink-0 px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-gold-400 to-gold-500 hover:from-gold-300 hover:to-gold-400 text-noir-950 transition-all flex items-center gap-1.5 shadow-sm"
           >
-            <span>Open {bookingType === "clinical" ? "Phorest" : "Fresha"} Portal</span>
+            <span>Open Fresha Portal</span>
             <ExternalLink className="w-3.5 h-3.5" />
           </a>
         </div>

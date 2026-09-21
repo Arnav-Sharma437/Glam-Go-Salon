@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Metadata } from "next";
 import { ArrowLeft, Phone, CalendarCheck, Clock, Tag, ArrowRight } from "lucide-react";
-import { SERVICES, SITE_INFO, BOOKING_LINKS } from "@/data/siteContent";
+import { SERVICES, SITE_INFO, BOOKING_LINKS, TREATMENT_PACKAGES } from "@/data/siteContent";
 
 export async function generateStaticParams() {
   return SERVICES.map((service) => ({
@@ -39,10 +39,7 @@ export default async function ServiceDetailPage({
     notFound();
   }
 
-  const bookingUrl =
-    service.bookingType === "clinical"
-      ? BOOKING_LINKS.clinicalPhorest
-      : BOOKING_LINKS.salonFresha;
+  const bookingUrl = BOOKING_LINKS.salonFresha;
 
   return (
     <div className="bg-cream-50 text-noir-950 py-12 lg:py-20">
@@ -150,6 +147,77 @@ export default async function ServiceDetailPage({
               </div>
             )}
 
+            {/* Relevant Packages & Courses */}
+            {(() => {
+              const categoryPackages = TREATMENT_PACKAGES.filter((p) => {
+                if (slug === "aesthetics-injectables") return true;
+                if (slug === "facials") return p.category === "Chemical Peels" || p.category === "Microneedling" || p.category === "Advanced Facials";
+                if (slug === "skin-treatments") return p.category === "PRP Therapy" || p.category === "Microneedling" || p.category === "Chemical Peels";
+                return false;
+              });
+
+              if (categoryPackages.length === 0) return null;
+
+              return (
+                <div className="p-6 sm:p-8 bg-noir-950 text-white rounded-3xl border border-gold-500/30 shadow-luxury space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <span className="text-[10px] uppercase tracking-widest text-gold-400 font-semibold block">
+                        Value Courses
+                      </span>
+                      <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+                        Treatment Packages &amp; Courses
+                      </h3>
+                    </div>
+                  </div>
+
+                  <div className="space-y-3 pt-1">
+                    {categoryPackages.map((pkg) => (
+                      <div
+                        key={pkg.id}
+                        className="p-4 bg-noir-900/90 rounded-2xl border border-white/10 hover:border-gold-500/50 transition-colors flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs sm:text-sm"
+                      >
+                        <div className="space-y-0.5">
+                          <div className="flex items-center gap-2">
+                            <span className="font-semibold text-white block">{pkg.title}</span>
+                            {pkg.saving && (
+                              <span className="text-[10px] font-bold text-emerald-400 bg-emerald-950/80 px-2 py-0.5 rounded-full border border-emerald-500/30">
+                                {pkg.saving}
+                              </span>
+                            )}
+                          </div>
+                          {pkg.description && (
+                            <p className="text-xs text-zinc-400 leading-relaxed max-w-md">
+                              {pkg.description}
+                            </p>
+                          )}
+                          <div className="flex flex-wrap items-center gap-3 pt-1 text-xs text-zinc-300">
+                            <span>Single: {pkg.singlePrice}</span>
+                            <span>•</span>
+                            <span className="text-gold-400 font-bold">
+                              Course ({pkg.courseSessions}): {pkg.coursePrice}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="shrink-0 pt-2 sm:pt-0">
+                          <a
+                            href={pkg.freshaUrl || bookingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="w-full sm:w-auto inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider text-noir-950 bg-gold-400 hover:bg-gold-500 transition-colors shadow-sm"
+                          >
+                            <span>Book Package</span>
+                            <ArrowRight className="w-3 h-3" />
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              );
+            })()}
+
             {/* Booking Actions */}
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <a
@@ -159,7 +227,7 @@ export default async function ServiceDetailPage({
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-noir-950 bg-gradient-to-r from-gold-400 to-gold-600 hover:from-gold-300 hover:to-gold-500 shadow-luxury transition-all"
               >
                 <CalendarCheck className="w-4 h-4" />
-                <span>Book on {service.bookingType === "clinical" ? "Phorest" : "Fresha"}</span>
+                <span>Book on Fresha</span>
               </a>
               <a
                 href={`tel:${SITE_INFO.phonePrimaryClean}`}
