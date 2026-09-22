@@ -18,7 +18,7 @@ export default function HomePage() {
       {/* 4. About Us (Editorial Split Layout, Exact Content) */}
       <AboutPreview />
 
-      {/* 5. Experience / Stats Section (15, 100%, 699, 12) */}
+      {/* 5. Experience / Stats Section (3.5K, 15+, 5+, 35+) */}
       <StatsSection />
 
       {/* 6. Our Services (Interactive Luxury Showcase, 6 Exact Services) */}

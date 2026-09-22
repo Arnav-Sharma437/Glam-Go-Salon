@@ -40,11 +40,11 @@ export default function AboutPreview() {
               {/* Gold Badge */}
               <div className="absolute top-6 -left-4 sm:-left-6 bg-noir-950 text-white p-4 rounded-xl shadow-xl border border-gold-500/30 flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-gold-500/20 text-gold-400 flex items-center justify-center font-serif text-lg font-bold">
-                  15
+                  15+
                 </div>
                 <div>
                   <div className="text-xs font-semibold uppercase tracking-wider text-gold-400">
-                    Years Of Legacy
+                    Years Of Experience
                   </div>
                   <div className="text-[11px] text-zinc-400">Hounslow Beauty Haven</div>
                 </div>

@@ -99,12 +99,12 @@ export const HERO_SLIDES = [
   },
 ];
 
-// Statistics exactly from live website
+// Statistics from live website
 export const STATS = [
-  { value: "15", label: "Years of Experience", icon: "Award" },
-  { value: "100%", label: "Natural Products", icon: "Leaf" },
-  { value: "699", label: "Satisfied Clients", icon: "ThumbsUp" },
-  { value: "12", label: "Specialists in The Team", icon: "Users" },
+  { value: "3.5K", label: "Happy Clients" },
+  { value: "15+", label: "Years of Experience" },
+  { value: "5+", label: "Academy Courses" },
+  { value: "35+", label: "Professional Team" },
 ];
 
 // About Us verbatim copy from live website
