@@ -4,7 +4,9 @@ import TopBar from "@/components/layout/TopBar";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import MobileAppTabBar from "@/components/layout/MobileAppTabBar";
+import MaintenanceScreen from "@/components/maintenance/MaintenanceScreen";
 import { SITE_INFO } from "@/data/siteContent";
+import { MAINTENANCE_CONFIG } from "@/data/maintenanceConfig";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://glamandgolondon.com"),
@@ -56,6 +58,16 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  if (MAINTENANCE_CONFIG.enabled) {
+    return (
+      <html lang="en" className="scroll-smooth">
+        <body className="min-h-screen bg-noir-950 text-white antialiased selection:bg-gold-500 selection:text-noir-950">
+          <MaintenanceScreen />
+        </body>
+      </html>
+    );
+  }
+
   return (
     <html lang="en" className="scroll-smooth">
       <body className="min-h-screen flex flex-col bg-cream-50 text-noir-950 antialiased selection:bg-gold-500 selection:text-noir-950 pb-16 md:pb-0">
